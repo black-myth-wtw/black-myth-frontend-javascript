@@ -1,0 +1,28 @@
+{
+  "name": "black-myth-frontend-javascript",
+  "version": "0.0.1",
+  "description": "black myth frontend javascript",
+  "keywords": [
+    "frontend",
+    "javascript"
+  ],
+  "homepage": "https://github.com/black-myth-wtw/black-myth-frontend-javascript#readme",
+  "bugs": {
+    "url": "https://github.com/black-myth-wtw/black-myth-frontend-javascript/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/black-myth-wtw/black-myth-frontend-javascript.git"
+  },
+  "license": "MIT",
+  "author": "black_myth_wtw",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "basic": "node ./basic/index.js",
+    "promises-aplus-tests": "promises-aplus-tests basic/src/practice/src/complete-promise-test/index.js"
+  },
+  "devDependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  }
+}
