@@ -1,14 +1,15 @@
+// javascript throttle 函数节流
 // ES5
-// throttle 函数节流
 // function throttle(fn, timeout) {
+//     if (typeof fn !== 'function') throw new TypeError(`The params fn:${fn} must be a function~~~~~~`);
 //     var timer = null,
 //         first = true;
 //     return function () {
 //         if (timer) return false;
-//         var args = Array.prototype.slice.call(arguments),
-//             self = this;
+//         var self = this,
+//             args = Array.prototype.slice.call(arguments);
 //         if (first) {
-//             fn.apply(self, args);
+//             fn.apply(this, args);
 //             first = false;
 //             return true;
 //         }
@@ -17,11 +18,12 @@
 //             clearTimeout(timer);
 //             timer = null;
 //         }, timeout);
-//     };
+//     }
 // }
-
+//
 // ES6
 // const throttle = (fn, timeout) => {
+//     if (typeof fn !== 'function') throw new TypeError(`The params fn:${fn} must be a function~~~~~~`);
 //     let timer = null,
 //         first = true;
 //     return function (...args) {
@@ -36,5 +38,5 @@
 //             clearTimeout(timer);
 //             timer = null;
 //         }, timeout);
-//     }
-// }
+//     };
+// };

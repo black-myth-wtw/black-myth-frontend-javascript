@@ -1,29 +1,24 @@
+// javascript pipe 函数管道
 // ES5
-// pipe 函数管道
 // function pipe() {
-//     var fns = Array.prototype.slice.call(arguments);
-//
+//     var args = Array.prototype.slice.call(arguments);
 //     return function (x) {
-//         return fns.reduceRight(function (a, b) {
+//         return args.reduceRight(function (a, b) {
 //             return b(a);
 //         }, x);
-//     };
+//     }
 // }
-//
 // function add(x) {
 //     return x + x;
 // }
-//
 // function multiply(x) {
-//     return x * x;
+//     return Math.pow(x, 2);
 // }
-//
-// console.log(pipe(add, multiply)(55));
-// console.log(pipe(add, multiply)(65));
-
+// var pipe_result = pipe(add, multiply)(40);
+// console.log('pipe_result:', pipe_result);
 // ES6
-// const pipe = (...fns) => x => fns.reduceRight((a, b) => b(a), x);
+// const pipe = (...args) => x => args.reduceRight((a, b) => b(a), x);
 // const add = x => x + x;
-// const multiply = x => x * x;
-// console.log(pipe(add, multiply)(55));
-// console.log(pipe(add, multiply)(66));
+// const multiply = x => Math.pow(x, 2);
+// const pipe_result = pipe(add, multiply)(65);
+// console.log('pipe_result:', pipe_result);

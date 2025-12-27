@@ -1,46 +1,40 @@
+// javascript complete promise A+ 完整模拟
 // ES5
-// complete promise A+ 完整模拟
 // var MyPromise = (function () {
-//     var PENDING = 'pending',
-//         FULFILLED = 'fulfilled',
-//         REJECTED = 'rejected';
-//
+//     var PENDING = 'PENDING',
+//         FULFILLED = 'FULFILLED',
+//         REJECTED = 'REJECTED';
 //     function Promise(fn) {
 //         this.status = PENDING;
 //         this.value = null;
 //         this.reason = null;
 //         this.onFulfilledCallbacks = [];
 //         this.onRejectedCallbacks = [];
-//
-//         var that = this;
-//
+//         var self = this;
 //         var resolve = function (value) {
-//             if (that.status === PENDING) {
-//                 that.status = FULFILLED;
-//                 that.value = value;
-//                 that.onFulfilledCallbacks.forEach(callback => {
+//             if (self.status === PENDING) {
+//                 self.status = FULFILLED;
+//                 self.value = value;
+//                 self.onFulfilledCallbacks.forEach(function (callback) {
 //                     callback(value);
 //                 });
 //             }
 //         };
-//
 //         var reject = function (reason) {
-//             if (that.status === PENDING) {
-//                 that.status = REJECTED;
-//                 that.reason = reason;
-//                 that.onRejectedCallbacks.forEach(callback => {
+//             if (self.status === PENDING) {
+//                 self.status = REJECTED;
+//                 self.reason = reason;
+//                 self.onRejectedCallbacks.forEach(function (callback) {
 //                     callback(reason);
 //                 });
 //             }
 //         };
-//
 //         try {
 //             fn(resolve, reject);
 //         } catch (error) {
 //             reject(error);
 //         }
 //     }
-//
 //     Promise.prototype.then = function (onFulfilled, onRejected) {
 //         if (typeof onFulfilled === 'undefined') {
 //             onFulfilled = function (value) {
@@ -50,54 +44,44 @@
 //         if (typeof onRejected === 'undefined') {
 //             onRejected = function (reason) {
 //                 throw reason;
-//             }
+//             };
 //         }
-//
 //         var promise = null,
-//             that = this;
-//
+//             self = this;
 //         if (this.status === FULFILLED) {
 //             promise = new Promise(function (resolve, reject) {
+//                 var promise_self = this;
 //                 setTimeout(function () {
 //                     try {
 //                         (function thenable(value) {
 //                             if (typeof onFulfilled !== 'function') {
 //                                 resolve(value);
 //                             } else {
-//                                 var then = value.then,
-//                                     self = this;
-//
+//                                 var then = value.then;
 //                                 if (typeof then === 'function') {
-//                                     try {
-//                                         then.call(this, function (y) {
-//                                             thenable.call(self, y);
-//                                         }, function (r) {
-//                                             reject(r);
-//                                         });
-//                                     } catch (error) {
-//                                         reject(error);
-//                                     }
+//                                     then.call(promise_self, function (y) {
+//                                         thenable.call(promise_self, y);
+//                                     });
 //                                 } else {
 //                                     var x = onFulfilled(value);
 //                                     resolvePromise(promise, x, resolve, reject);
 //                                 }
 //                             }
-//                         }.bind(that))(that.value);
+//                         })(self.value);
 //                     } catch (error) {
 //                         reject(error);
 //                     }
 //                 }, 0);
 //             });
 //         }
-//
 //         if (this.status === REJECTED) {
 //             promise = new Promise(function (resolve, reject) {
 //                 setTimeout(function () {
 //                     try {
 //                         if (typeof onRejected !== 'function') {
-//                             reject(that.reason);
+//                             reject(self.reason);
 //                         } else {
-//                             var x = onRejected(that.reason);
+//                             var x = onRejected(self.reason);
 //                             resolvePromise(promise, x, resolve, reject);
 //                         }
 //                     } catch (error) {
@@ -106,47 +90,39 @@
 //                 }, 0);
 //             });
 //         }
-//
 //         if (this.status === PENDING) {
 //             promise = new Promise(function (resolve, reject) {
-//                 that.onFulfilledCallbacks.push(function () {
+//                 var promise_self = this;
+//                 self.onFulfilledCallbacks.push(function () {
 //                     setTimeout(function () {
 //                         try {
 //                             (function thenable(value) {
 //                                 if (typeof onFulfilled !== 'function') {
 //                                     resolve(value);
 //                                 } else {
-//                                     var then = value.then,
-//                                         self = this;
-//
+//                                     var then = value.then;
 //                                     if (typeof then === 'function') {
-//                                         try {
-//                                             then.call(this, function (y) {
-//                                                 thenable.call(self, y);
-//                                             }, function (r) {
-//                                                 reject(r);
-//                                             });
-//                                         } catch (error) {
-//                                             reject(error);
-//                                         }
+//                                         then.call(promise_self, function (y) {
+//                                             thenable.call(promise_self, y);
+//                                         });
 //                                     } else {
 //                                         var x = onFulfilled(value);
 //                                         resolvePromise(promise, x, resolve, reject);
 //                                     }
 //                                 }
-//                             }.bind(that))(that.value);
+//                             })(self.value);
 //                         } catch (error) {
 //                             reject(error);
 //                         }
 //                     }, 0);
 //                 });
-//                 that.onRejectedCallbacks.push(function () {
+//                 self.onRejectedCallbacks.push(function () {
 //                     setTimeout(function () {
 //                         try {
 //                             if (typeof onRejected !== 'function') {
-//                                 reject(that.reason);
+//                                 reject(self.reason);
 //                             } else {
-//                                 var x = onRejected(that.reason);
+//                                 var x = onRejected(self.reason);
 //                                 resolvePromise(promise, x, resolve, reject);
 //                             }
 //                         } catch (error) {
@@ -156,18 +132,12 @@
 //                 });
 //             });
 //         }
-//
 //         return promise;
 //     };
-//
 //     Promise.prototype.catch = function (onRejected) {
 //         return this.then(null, onRejected);
-//     }
-//
+//     };
 //     Promise.prototype.finally = function (fn) {
-//         if (typeof fn !== 'function') {
-//             throw new TypeError(`The params ${fn.name} must be a function.`);
-//         }
 //         return this.then(function (value) {
 //             return Promise.resolve(fn()).then(function () {
 //                 return value;
@@ -177,8 +147,7 @@
 //                 throw reason;
 //             });
 //         });
-//     }
-//
+//     };
 //     Promise.resolve = function (params) {
 //         if (params instanceof Promise) {
 //             return params;
@@ -187,28 +156,25 @@
 //             resolve(params);
 //         });
 //     };
-//
 //     Promise.reject = function (reason) {
 //         return new Promise(function (resolve, reject) {
 //             reject(reason);
 //         });
 //     };
-//
-//     Promise.all = function (promises) {
-//         if (!Array.isArray(promises)) {
-//             throw new TypeError(`The params ${promises} must be an Array.`);
+//     Promise.all = function (promise_list) {
+//         if (!Array.isArray(promise_list)) {
+//             throw new TypeError(`The params promise_list:${promise_list} must be an array~~~~~~`);
 //         }
 //         return new Promise(function (resolve, reject) {
-//             const result = [],
-//                 promises_length = promises.length;
+//             const {length: promise_list_length} = promise_list,
+//                 promise_all_list = [];
 //             let count = 0;
-//
-//             promises.forEach(function (promise, index) {
-//                 return Promise.resolve(promise).then(function (value) {
+//             promise_list.forEach(function (promise, index) {
+//                 Promise.resolve(promise).then(function (value) {
 //                     count++;
-//                     result[index] = value;
-//                     if (count >= promises_length) {
-//                         resolve(result);
+//                     promise_all_list[index] = value;
+//                     if (count >= promise_list_length) {
+//                         resolve(promise_all_list);
 //                     }
 //                 }, function (reason) {
 //                     reject(reason);
@@ -216,14 +182,13 @@
 //             });
 //         });
 //     };
-//
-//     Promise.race = function (promises) {
-//         if (!Array.isArray(promises)) {
-//             throw new TypeError(`The params ${promises} must be an Array.`);
+//     Promise.race = function (promise_list) {
+//         if (!Array.isArray(promise_list)) {
+//             throw new TypeError(`The params promise_list:${promise_list} must be an array~~~~~~`);
 //         }
 //         return new Promise(function (resolve, reject) {
-//             promises.forEach(function (promise) {
-//                 return Promise.resolve(promise).then(function (value) {
+//             promise_list.forEach(function (promise) {
+//                 Promise.resolve(promise).then(function (value) {
 //                     resolve(value);
 //                 }, function (reason) {
 //                     reject(reason);
@@ -231,44 +196,43 @@
 //             });
 //         });
 //     };
-//
-//     Promise.allSettled = function (promises) {
-//         if (!Array.isArray(promises)) {
-//             throw new TypeError(`The params ${promises} must be an Array.`);
+//     Promise.allSettled = function (promise_list) {
+//         if (!Array.isArray(promise_list)) {
+//             throw new TypeError(`The params promise_list:${promise_list} must be an array~~~~~~`);
 //         }
-//         return new Promise(function (resolve) {
-//             const result = [],
-//                 promises_length = promises.length;
+//         return new Promise(function (resolve, reject) {
+//             const {length: promise_list_length} = promise_list,
+//                 promise_all_list = [];
 //             let count = 0;
-//
-//             promises.forEach(function (promise, index) {
-//                 return Promise.resolve(promise).then(function (value) {
+//             promise_list.forEach(function (promise, index) {
+//                 Promise.resolve(promise).then(function (value) {
 //                     count++;
-//                     result[index] = {
+//                     promise_all_list[index] = {
 //                         status: 'fulfilled',
 //                         value,
 //                     };
-//                     if (count >= promises_length) {
-//                         resolve(result);
+//                     if (count >= promise_list_length) {
+//                         resolve(promise_all_list);
 //                     }
 //                 }, function (reason) {
 //                     count++;
-//                     result[index] = {
+//                     promise_all_list[index] = {
 //                         status: 'rejected',
 //                         reason,
 //                     };
-//                     if (count >= promises_length) {
-//                         resolve(result);
+//                     if (count >= promise_list_length) {
+//                         resolve(promise_all_list);
 //                     }
 //                 });
 //             });
 //         });
 //     };
-//
 //     function resolvePromise(promise, x, resolve, reject) {
-//         if (promise === x) return reject(new ReferenceError('The promise and the return value are the same!'));
+//         if (promise === x) return reject(new TypeError('The promise and the return value are the same~~~~~~'));
 //         if (x instanceof Promise) x.then(function (y) {
-//             resolve(promise, y, resolve, reject);
+//             resolvePromise(promise, y, resolve, reject);
+//         }, function (y) {
+//             reject(y);
 //         });
 //         if (typeof x === 'function' || typeof x === 'object') {
 //             if (x === null) return resolve(x);
@@ -304,116 +268,139 @@
 //             resolve(x);
 //         }
 //     }
-//
 //     return Promise;
 // })();
-//
 // var promise = new MyPromise(function (resolve) {
 //     resolve({
 //         then(resolve) {
 //             resolve({
 //                 then(resolve) {
-//                     setTimeout(function () {
-//                         resolve({
-//                             then(resolve) {
-//                                 resolve('I love ZhaoYue!!!!!!');
-//                             }
-//                         });
-//                     }, 2000);
+//                     resolve({
+//                         then(resolve) {
+//                             resolve({
+//                                 then(resolve) {
+//                                     setTimeout(function () {
+//                                         resolve('I love WangJinJin~~~~~~');
+//                                     }, 2000);
+//                                 }
+//                             });
+//                         }
+//                     });
 //                 }
-//             });
+//             })
 //         }
 //     });
 // });
-//
 // promise.then(function (value) {
 //     console.log(value);
-//
 //     return `I love ${value}`;
-// }).then(1).then(function (value) {
-//     console.log(value);
-//     throw new TypeError('I love ZhengShuAng!!!!!!');
+// }).then(99).then(function (val) {
+//     console.log(val);
+//     // throw new TypeError('I love myself~~~~~~');
+//     return `I love ${val}`;
+// }).then(function (result) {
+//     return MyPromise.reject(result);
 // }).catch(function (reason) {
-//     console.error(`error: ${reason.message}`);
+//     console.error('error:', reason);
 // });
 // setTimeout(function () {
-//     console.log('I love myself~~~~~~');
+//     console.log('I love ZhengShuAng~~~~~~');
 // }, 0);
-// console.log('I love WangJinJin!!!!!!');
-// MyPromise.resolve([1, 2, 3]).then(function (value) {
-//     console.log(value);
+// console.log('I love ZhaoYue~~~~~~');
+// MyPromise.resolve([1, 99, 100]).then(function (values) {
+//     console.log(values);
 // });
-// MyPromise.resolve([1, MyPromise.reject('666666'), 3]).then(function (value) {
+// // MyPromise.resolve([1, Promise.reject(99), 101]).then(function (values) {
+// //     console.log(values);
+// // }).catch(function (reason) {
+// //     console.error('error:', reason);
+// // });
+// MyPromise.resolve(promise).then(function (value) {
 //     console.log(value);
 // }).catch(function (reason) {
-//     console.log(reason);
+//     console.log('error:', reason);
 // });
-// MyPromise.reject('666666').then(function (value) {
+// MyPromise.reject('I love complete promise~~~~~').then(function (value) {
 //     console.log(value);
 // }).catch(function (reason) {
-//     console.log(reason);
+//     console.log('error:', reason);
+// });
+// MyPromise.all([new MyPromise(function (resolve) {
+//     resolve('I love FrontEnd~~~~~~')
+// }), MyPromise.resolve(199), true]).then(function (values) {
+//     console.log(values);
+// }).catch(function (reason) {
+//     console.error('error:', reason);
+// });
+// MyPromise.all([new MyPromise(function (resolve) {
+//     resolve('I love FrontEnd~~~~~~')
+// }), MyPromise.reject(777), true]).then(function (values) {
+//     console.log(values);
+// }).catch(function (reason) {
+//     console.error('error:', reason);
 // });
 // MyPromise.all([new MyPromise(function (resolve) {
 //     setTimeout(function () {
-//         resolve('6688');
-//     }, 3000);
-// }), MyPromise.resolve('black_myth_wtw'), 777777]).then(function (results) {
-//     console.log(results);
+//         resolve('I love FrontEnd~~~~~~');
+//     }, 4500);
+// }), MyPromise.resolve(999), true]).then(function (values) {
+//     console.log(values);
 // }).catch(function (reason) {
-//     console.error(reason);
-// });
-// MyPromise.all([new MyPromise(function (resolve) {
-//     setTimeout(function () {
-//         resolve('6688');
-//     }, 3000);
-// }), MyPromise.reject(new TypeError('爱说实言的灵吉')), 777777]).then(function (results) {
-//     console.log(results);
-// }).catch(function (reason) {
-//     console.error(reason);
+//     console.error('error:', reason);
 // });
 // MyPromise.race([new MyPromise(function (resolve) {
 //     setTimeout(function () {
-//         resolve('6688');
-//     }, 4000);
-// }), MyPromise.reject(false), 777777]).then(function (results) {
-//     console.log(results);
-// }).catch(function (reason) {
-//     console.error(reason);
-// });
-// MyPromise.race([new MyPromise(function (resolve) {
-//     setTimeout(function () {
-//         resolve('6688');
-//     }, 4000);
+//         resolve('I love FrontEnd~~~~~~');
+//     }, 3000);
 // }), new MyPromise(function (resolve, reject) {
 //     setTimeout(function () {
-//         reject(false);
-//     }, 5000)
-// }), 777777]).then(function (results) {
-//     console.log(results);
+//         reject(777);
+//     }, 4000);
+// }), true]).then(function (values) {
+//     console.log(values);
 // }).catch(function (reason) {
-//     console.error(reason);
+//     console.error('error:', reason);
+// });
+// MyPromise.race([new MyPromise(function (resolve) {
+//     setTimeout(function () {
+//         resolve('I love FrontEnd~~~~~~');
+//     }, 2800);
+// }), new MyPromise(function (resolve, reject) {
+//     setTimeout(function () {
+//         reject(777);
+//     }, 4000);
+// }), new MyPromise(function (resolve) {
+//     setTimeout(function () {
+//         resolve(true);
+//     }, 2900);
+// })]).then(function (values) {
+//     console.log(values);
+// }).catch(function (reason) {
+//     console.error('error:', reason);
 // });
 // MyPromise.allSettled([new MyPromise(function (resolve) {
 //     setTimeout(function () {
-//         resolve('6688');
-//     }, 4000);
+//         resolve('I love NodeJS~~~~~~');
+//     }, 3100);
 // }), new MyPromise(function (resolve, reject) {
 //     setTimeout(function () {
-//         reject(false);
-//     }, 5000)
-// }), 777777]).then(function (results) {
-//     console.log(results);
+//         reject(1000);
+//     }, 4200);
+// }), new MyPromise(function (resolve) {
+//     setTimeout(function () {
+//         resolve(false);
+//     }, 2200);
+// })]).then(function (values) {
+//     console.log(values);
 // }).catch(function (reason) {
-//     console.error(reason);
+//     console.error('error:', reason);
 // });
-
-
-// ES6
-// const MyPromise = (() => {
-//     const PENDING = 'pending',
-//         FULFILLED = 'fulfilled',
-//         REJECTED = 'rejected';
 //
+// ES6
+// const MyPromise = (function () {
+//     const PENDING = 'PENDING',
+//         FULFILLED = 'FULFILLED',
+//         REJECTED = 'REJECTED';
 //     class Promise {
 //         constructor(fn) {
 //             this.status = PENDING;
@@ -421,80 +408,68 @@
 //             this.reason = null;
 //             this.onFulfilledCallbacks = [];
 //             this.onRejectedCallbacks = [];
-//
 //             const resolve = value => {
 //                 if (this.status === PENDING) {
 //                     this.status = FULFILLED;
 //                     this.value = value;
-//                     this.onFulfilledCallbacks.forEach(callback => {
-//                         callback(value);
-//                     });
+//                     this.onFulfilledCallbacks.forEach(callback => callback(value));
 //                 }
 //             };
-//
 //             const reject = reason => {
 //                 if (this.status === PENDING) {
 //                     this.status = REJECTED;
 //                     this.reason = reason;
-//                     this.onRejectedCallbacks.forEach(callback => {
-//                         callback(reason);
-//                     });
+//                     this.onRejectedCallbacks.forEach(callback => callback(reason));
 //                 }
 //             };
-//
 //             try {
 //                 fn(resolve, reject);
 //             } catch (error) {
 //                 reject(error);
 //             }
 //         }
-//
 //         then(onFulfilled = value => value, onRejected = reason => {
 //             throw reason;
 //         }) {
-//             let promise = null;
-//
+//             let promise = null,
+//                 self = this;
 //             if (this.status === FULFILLED) {
-//                 promise = new Promise((resolve, reject) => {
+//                 promise = new Promise(function (resolve, reject) {
 //                     setTimeout(() => {
 //                         try {
 //                             (function thenable(value) {
 //                                 if (typeof onFulfilled !== 'function') {
 //                                     resolve(value);
 //                                 } else {
-//                                     const then = value.then;
-//
+//                                     let then = value.then;
 //                                     if (typeof then === 'function') {
 //                                         try {
 //                                             then.call(this, y => {
 //                                                 thenable.call(this, y);
-//                                             }, (r) => {
-//                                                 reject(r);
 //                                             });
 //                                         } catch (error) {
 //                                             reject(error);
 //                                         }
 //                                     } else {
-//                                         const x = onFulfilled(value);
+//                                         let x = onFulfilled(value);
 //                                         resolvePromise(promise, x, resolve, reject);
 //                                     }
 //                                 }
-//                             }.bind(this))(this.value);
+//                             }.bind(this))(self.value);
 //                         } catch (error) {
 //                             reject(error);
 //                         }
 //                     }, 0);
 //                 });
 //             }
-//
 //             if (this.status === REJECTED) {
-//                 promise = new Promise((resolve, reject) => {
+//                 promise = new Promise(function (resolve, reject) {
 //                     setTimeout(() => {
 //                         try {
 //                             if (typeof onRejected !== 'function') {
-//                                 reject(this.reason);
+//                                 reject(self.reason);
 //                             } else {
-//                                 const x = onRejected(this.reason);
+//                                 let x = onRejected(self.reason);
 //                                 resolvePromise(promise, x, resolve, reject);
 //                             }
 //                         } catch (error) {
@@ -503,46 +478,42 @@
 //                     }, 0);
 //                 });
 //             }
-//
 //             if (this.status === PENDING) {
-//                 promise = new Promise((resolve, reject) => {
-//                     this.onFulfilledCallbacks.push(() => {
+//                 promise = new Promise(function (resolve, reject) {
+//                     self.onFulfilledCallbacks.push(() => {
 //                         setTimeout(() => {
 //                             try {
 //                                 (function thenable(value) {
 //                                     if (typeof onFulfilled !== 'function') {
 //                                         resolve(value);
 //                                     } else {
-//                                         const then = value.then;
-//
+//                                         let then = value.then;
 //                                         if (typeof then === 'function') {
 //                                             try {
 //                                                 then.call(this, y => {
 //                                                     thenable.call(this, y);
-//                                                 }, (r) => {
-//                                                     reject(r);
 //                                                 });
 //                                             } catch (error) {
 //                                                 reject(error);
 //                                             }
 //                                         } else {
-//                                             const x = onFulfilled(value);
+//                                             let x = onFulfilled(value);
 //                                             resolvePromise(promise, x, resolve, reject);
 //                                         }
 //                                     }
-//                                 }.bind(this))(this.value);
+//                                 }.bind(this))(self.value);
 //                             } catch (error) {
 //                                 reject(error);
 //                             }
 //                         }, 0);
 //                     });
-//                     this.onRejectedCallbacks.push(() => {
+//                     self.onRejectedCallbacks.push(() => {
 //                         setTimeout(() => {
 //                             try {
 //                                 if (typeof onRejected !== 'function') {
-//                                     reject(this.reason);
+//                                     reject(self.reason);
 //                                 } else {
-//                                     const x = onRejected(this.reason);
+//                                     let x = onRejected(self.reason);
 //                                     resolvePromise(promise, x, resolve, reject);
 //                                 }
 //                             } catch (error) {
@@ -552,100 +523,91 @@
 //                     });
 //                 });
 //             }
-//
 //             return promise;
 //         }
-//
 //         catch(onRejected) {
 //             return this.then(null, onRejected);
 //         }
-//
 //         finally(fn) {
-//             if (typeof fn !== 'function') {
-//                 throw new TypeError(`The params ${fn.name} must be a function.`);
-//             }
-//             return this.then(value => Promise.resolve(fn()).then(() => value), reason => Promise.resolve(fn()).catch(() => {
-//                 throw reason;
-//             }));
+//             return this.then(value => {
+//                 return Promise.resolve(fn()).then(() => value);
+//             }, reason => {
+//                 return Promise.resolve(fn()).catch(() => {
+//                     throw reason;
+//                 });
+//             });
 //         }
 //     }
-//
-//     Promise.resolve = params => params instanceof Promise ? params : new Promise((resolve) => resolve(params));
-//
-//     Promise.reject = reason => new Promise((resolve, reject) => reject(reason));
-//
-//     Promise.all = promises => {
-//         if (!Array.isArray(promises)) {
-//             throw new TypeError(`The params ${promises} must be an Array.`);
-//         }
-//         return new Promise((resolve, reject) => {
-//             const result = [],
-//                 promises_length = promises.length;
-//             let count = 0;
-//
-//             promises.forEach((promise, index) => {
-//                 return Promise.resolve(promise).then(value => {
-//                     count++;
-//                     result[index] = value;
-//                     if (count >= promises_length) {
-//                         resolve(result);
-//                     }
-//                 }, reason => reject(reason));
-//             });
-//         });
-//     };
-//
-//     Promise.race = promises => {
-//         if (!Array.isArray(promises)) {
-//             throw new TypeError(`The params ${promises} must be an Array.`);
-//         }
-//         return new Promise((resolve, reject) => {
-//             promises.forEach(promise => {
-//                 return Promise.resolve(promise).then(value => {
-//                     resolve(value);
-//                 }, reason => reject(reason));
-//             });
-//         });
-//     };
-//
-//     Promise.allSettled = promises => {
-//         if (!Array.isArray(promises)) {
-//             throw new TypeError(`The params ${promises} must be an Array.`);
+//     Promise.resolve = params => {
+//         if (params instanceof Promise) {
+//             return params;
 //         }
 //         return new Promise(resolve => {
-//             const result = [],
-//                 promises_length = promises.length;
+//             resolve(params);
+//         });
+//     };
+//     Promise.reject = reason => {
+//         return new Promise((resolve, reject) => {
+//             reject(reason);
+//         });
+//     };
+//     Promise.all = promise_list => {
+//         if (!Array.isArray(promise_list)) throw new TypeError(`The params promise_list:${promise_list}} must be an array~~~~~~`);
+//         return new Promise((resolve, reject) => {
+//             const {length: promise_list_length} = promise_list,
+//                 promise_all_list = [];
 //             let count = 0;
-//
-//             promises.forEach((promise, index) => {
-//                 return Promise.resolve(promise).then(value => {
+//             promise_list.forEach((promise, index) => {
+//                 Promise.resolve(promise).then(value => {
 //                     count++;
-//                     result[index] = {
-//                         status: 'fulfilled',
-//                         value,
-//                     };
-//                     if (count >= promises_length) {
-//                         resolve(result);
-//                     }
+//                     promise_all_list[index] = value;
+//                     if (count >= promise_list_length) resolve(promise_all_list);
 //                 }, reason => {
-//                     count++;
-//                     result[index] = {
-//                         status: 'rejected',
-//                         reason,
-//                     };
-//                     if (count >= promises_length) {
-//                         resolve(result);
-//                     }
+//                     reject(reason);
 //                 });
 //             });
 //         });
 //     };
-//
-//     function resolvePromise(promise, x, resolve, reject) {
-//         if (promise === x) return reject(new ReferenceError('The promise and the return value are the same!'));
-//         if (x instanceof Promise) x.then(y => {
-//             resolve(promise, y, resolve, reject);
+//     Promise.race = promise_list => {
+//         if (!Array.isArray(promise_list)) throw new TypeError(`The params promise_list:${promise_list}} must be an array~~~~~~`);
+//         return new Promise((resolve, reject) => {
+//             promise_list.forEach((promise, index) => {
+//                 Promise.resolve(promise).then(value => {
+//                     resolve(value);
+//                 }, reason => {
+//                     reject(reason);
+//                 });
+//             });
 //         });
+//     };
+//     Promise.allSettled = promise_list => {
+//         if (!Array.isArray(promise_list)) throw new TypeError(`The params promise_list:${promise_list}} must be an array~~~~~~`);
+//         return new Promise(resolve => {
+//             const {length: promise_list_length} = promise_list,
+//                 promise_all_settled_result = [];
+//             let count = 0;
+//             promise_list.forEach((promise, index) => {
+//                 Promise.resolve(promise).then(value => {
+//                     count++;
+//                     promise_all_settled_result[index] = {
+//                         status: 'fulfilled',
+//                         value,
+//                     };
+//                     if (count >= promise_list_length) resolve(promise_all_settled_result);
+//                 }, reason => {
+//                     count++;
+//                     promise_all_settled_result[index] = {
+//                         status: 'rejected',
+//                         reason,
+//                     };
+//                     if (count >= promise_list_length) resolve(promise_all_settled_result);
+//                 });
+//             });
+//         });
+//     };
+//     function resolvePromise(promise, x, resolve, reject) {
+//         if (promise === x) return reject(new TypeError('The promise and the return value are the same~~~~~~'));
+//         if (x instanceof Promise) x.then(y => resolvePromise(promise, y, resolve, reject), r => reject(r));
 //         if (typeof x === 'function' || typeof x === 'object') {
 //             if (x === null) return resolve(x);
 //
@@ -680,77 +642,88 @@
 //             resolve(x);
 //         }
 //     }
-//
 //     return Promise;
 // })();
-//
-// const promise = new MyPromise((resolve) => {
+// const promise = new MyPromise(resolve => {
 //     resolve({
 //         then(resolve) {
 //             resolve({
 //                 then(resolve) {
-//                     setTimeout(() => {
-//                         resolve({
-//                             then(resolve) {
-//                                 resolve('I love ZhaoYue!!!!!!');
-//                             }
-//                         });
-//                     }, 2000);
+//                     resolve({
+//                         then(resolve) {
+//                             resolve({
+//                                 then(resolve) {
+//                                     setTimeout(() => {
+//                                         resolve('I love WangJinJin~~~~~~');
+//                                     }, 2000);
+//                                 }
+//                             });
+//                         }
+//                     });
 //                 }
-//             });
+//             })
 //         }
 //     });
 // });
-//
 // promise.then(value => {
 //     console.log(value);
-//
 //     return `I love ${value}`;
-// }).then(1).then(value => {
-//     console.log(value);
-//     throw new TypeError('I love ZhengShuAng!!!!!!');
+// }).then(99).then(val => {
+//     console.log(val);
+//     // throw new TypeError('I love myself~~~~~~');
+//     return `I love ${val}`;
+// }).then(result => {
+//     return MyPromise.reject(result);
 // }).catch(reason => {
-//     console.error(`error: ${reason.message}`);
+//     console.error('error:', reason);
 // });
 // setTimeout(() => {
-//     console.log('I love myself~~~~~~');
+//     console.log('I love ZhengShuAng~~~~~~');
 // }, 0);
-// console.log('I love WangJinJin!!!!!!');
-// MyPromise.resolve([1, 2, 3]).then(value => console.log(value));
-// MyPromise.resolve([1, MyPromise.reject('666666'), 3]).then(value => console.log(value)).catch(reason => console.error(reason));
-// MyPromise.reject('666666').then(value => console.log(value)).catch(reason => console.error(reason));
+// console.log('I love ZhaoYue~~~~~~');
+// MyPromise.resolve([1, 99, 100]).then(values => console.log(values));
+// // MyPromise.resolve([1, Promise.reject(99), 101]).then(values => console.log(values)).catch(reason => console.error('error:', reason));
+// MyPromise.resolve(promise).then(values => console.log(values)).catch(reason => console.error('error:', reason));
+// MyPromise.reject('I love complete promise~~~~~').then(values => console.log(values)).catch(reason => console.error('error:', reason));
+// MyPromise.all([new MyPromise(resolve => resolve('I love FrontEnd~~~~~~')), MyPromise.resolve(199), true]).then(values => console.log(values)).catch(reason => console.error('error:', reason));
+// MyPromise.all([new MyPromise(resolve => resolve('I love FrontEnd~~~~~~')), MyPromise.reject(777), true]).then(values => console.log(values)).catch(reason => console.error('error:', reason));
 // MyPromise.all([new MyPromise(resolve => {
 //     setTimeout(() => {
-//         resolve('6688');
-//     }, 3000);
-// }), MyPromise.resolve('black_myth_wtw'), 777777]).then(value => console.log(value)).catch(reason => console.error(reason));
-// MyPromise.all([new MyPromise(resolve => {
-//     setTimeout(() => {
-//         resolve('6688');
-//     }, 3000);
-// }), MyPromise.reject(new TypeError('爱说实言的灵吉')), 777777]).then(value => console.log(value)).catch(reason => console.error(reason));
-// ;
+//         resolve('I love FrontEnd~~~~~~');
+//     }, 4500);
+// }), MyPromise.resolve(999), true]).then(values => console.log(values)).catch(reason => console.error('error:', reason));
 // MyPromise.race([new MyPromise(resolve => {
 //     setTimeout(() => {
-//         resolve('6688');
+//         resolve('I love FrontEnd~~~~~~');
+//     }, 3000);
+// }), new MyPromise((resolve, reject) => {
+//     setTimeout(() => {
+//         reject(777);
 //     }, 4000);
-// }), MyPromise.reject(false), 777777]).then(value => console.log(value)).catch(reason => console.error(reason));
+// }), true]).then(values => console.log(values)).catch(reason => console.error('error:', reason));
 // MyPromise.race([new MyPromise(resolve => {
 //     setTimeout(() => {
-//         resolve('6688');
-//     }, 4000);
+//         resolve('I love FrontEnd~~~~~~');
+//     }, 2800);
 // }), new MyPromise((resolve, reject) => {
 //     setTimeout(() => {
-//         reject(false);
-//     }, 5000)
-// }), 777777]).then(value => console.log(value)).catch(reason => console.error(reason));
-// MyPromise.allSettled([new MyPromise((resolve) => {
-//     setTimeout(() => {
-//         resolve('6688');
+//         reject(777);
 //     }, 4000);
+// }), new MyPromise(resolve => {
+//     setTimeout(() => {
+//         resolve(true);
+//     }, 2900);
+// })]).then(values => console.log(values)).catch(reason => console.error('error:', reason));
+// MyPromise.allSettled([new MyPromise(resolve => {
+//     setTimeout(() => {
+//         resolve('I love NodeJS~~~~~~');
+//     }, 3100);
 // }), new MyPromise((resolve, reject) => {
 //     setTimeout(() => {
-//         reject(false);
-//     }, 5000)
-// }), 777777]).then(value => console.log(value)).catch(reason => console.error(reason));
-
+//         reject(1000);
+//     }, 4200);
+// }), new MyPromise(resolve => {
+//     setTimeout(() => {
+//         resolve(false);
+//     }, 2200);
+// })]).then(values => console.log(values)).catch(reason => console.error('error:', reason));

@@ -1,9 +1,7 @@
+// javascript promise timeout 异步状态机请求超时中间件
 // ES5
-// promise timeout 异步状态机请求超时中间件
 // function promise_timeout(promises, timeout) {
-//     if (!Array.isArray(promises)) {
-//         throw new TypeError(`The params ${promises} must be an array!`);
-//     }
+//     if (!Array.isArray(promises)) throw new TypeError(`The params promises:${promises} must be an array~~~~~~`);
 //     return Promise.race([...promises.map(function (promise) {
 //         return Promise.resolve(promise).then(function (value) {
 //             if (typeof value === 'object' && value.hasOwnProperty('status')) {
@@ -11,68 +9,61 @@
 //             } else {
 //                 return {
 //                     status: 'fulfilled',
-//                     value
-//                 };
-//             }
-//         }).catch(function (reason) {
-//             if (typeof reason === 'object' && reason.hasOwnProperty('status')) {
-//                 return reason;
-//             } else {
-//                 return {
-//                     status: 'rejected',
-//                     reason
+//                     value,
 //                 };
 //             }
 //         });
-//     }), new Promise(function (resolve, reject) {
+//     }), new Promise((resolve, reject) => {
 //         setTimeout(function () {
 //             reject({
 //                 status: 'rejected',
-//                 reason: '请求超时!'
-//             })
+//                 reason: '请求超时~~~~~~'
+//             });
 //         }, timeout);
 //     })]);
 // }
-//
-// promise_timeout([new Promise(function (resolve) {
-//     // resolve('black_myth_wtw');
-//     // resolve({status: 'fulfilled', value: 'black@myth@wtw'});
-//     // setTimeout(() => {
-//     //     resolve('black$myth$wtw');
-//     // }, 2900);
+// const promise_timeout_result = promise_timeout([new Promise(resolve => {
+//     // resolve('I love ZhengShuAng~~~~~~');
+//     // resolve({
+//     //     status: 'fulfilled',
+//     //     value: 'I love ZhaoYue~~~~~~'
+//     // });
+//     // setTimeout(function () {
+//     //     resolve('I love WangJinJin~~~~~~');
+//     // }, 3100);
 //     setTimeout(function () {
-//         resolve('black&myth&wtw');
-//     }, 3100);
-// })], 3000).then(function (value) {
-//     console.log(value)
+//         resolve('I love myself~~~~~~');
+//     }, 2900);
+// })], 3000);
+// promise_timeout_result.then(function (value) {
+//     console.log('result:', value);
 // }).catch(function (reason) {
-//     console.error(reason)
+//     console.error('reason:', reason);
 // });
 
 // ES6
 // function promise_timeout(promises, timeout) {
-//     if (!Array.isArray(promises)) {
-//         throw new TypeError(`The params ${promises} must be an array!`);
-//     }
+//     if (!Array.isArray(promises)) throw new TypeError(`The params promises:${promises} must be an array~~~~~~`);
 //     return Promise.race([...promises.map(promise => Promise.resolve(promise).then(value => typeof value === 'object' && value.hasOwnProperty('status') ? value : {
 //         status: 'fulfilled',
 //         value
-//     }).catch(reason => typeof reason === 'object' && reason.hasOwnProperty('status') ? reason : {
-//         status: 'rejected',
-//         reason
-//     })), new Promise((resolve, reject) => setTimeout(() => reject({
-//         status: 'rejected',
-//         reason: '请求超时!'
-//     }), timeout))]);
+//     })), new Promise((resolve, reject) => setTimeout(() => {
+//         reject({
+//             status: 'rejected',
+//             reason: '请求超时~~~~~~'
+//         });
+//     }, timeout))]);
 // }
-//
 // promise_timeout([new Promise(resolve => {
-//     // resolve('black_myth_wtw');
-//     // resolve({status: 'fulfilled', value: 'black@myth@wtw'});
+//     // resolve('I love ZhengShuAng~~~~~~');
+//     // resolve({
+//     //     status: 'fulfilled',
+//     //     value: 'I love ZhaoYue~~~~~~'
+//     // });
 //     // setTimeout(() => {
-//     //     resolve('black$myth$wtw');
-//     // }, 2900);
+//     //     resolve('I love WangJinJin~~~~~~');
+//     // }, 3100);
 //     setTimeout(() => {
-//         resolve('black&myth&wtw');
-//     }, 3100);
-// })], 3000).then(value => console.log(value)).catch(reason => console.error(reason));
+//         resolve('I love myself~~~~~~');
+//     }, 2900);
+// })], 3000).then(value => console.log('result:', value)).catch(error => console.error(error));

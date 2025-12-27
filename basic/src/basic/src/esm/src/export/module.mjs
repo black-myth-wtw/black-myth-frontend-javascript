@@ -1,13 +1,8 @@
-export let number = 20;
-export const name = 'black@myth@wtw';
-export let drink = 'wine';
+export let number = 88;
+export const gender = true;
+export const drink = 'water';
 
-export function count() {
-    return number++;
+function sum() {
+    return (number = number + 102);
 }
-
-export function sum() {
-    return (number = number + 2);
-}
-
 export {sum as default};

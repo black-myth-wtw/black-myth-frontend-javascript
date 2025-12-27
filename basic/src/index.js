@@ -1,4 +1,4 @@
-// javascript es6 基础语法
+// javascript basic es6 基础语法
 require('./basic');
-// javascript es6 模拟各方法与中间件
+// javascript practice 练习模拟各方法与中间件
 require('./practice');

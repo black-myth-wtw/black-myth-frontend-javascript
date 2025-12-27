@@ -1,4 +1,4 @@
-// javascript let const 声明常量、变量
+// javascript let const 常变量声明
 require('./let-const');
 // javascript string 字符串
 require('./string');
@@ -20,11 +20,11 @@ require('./iterator');
 require('./generator');
 // javascript class 类
 require('./class');
-// javascript array 改进数组
-require('./array');
+// javascript typed array 改进的数组
+require('./typed-array');
 // javascript promise 异步状态机
 require('./promise');
-// javascript esm 模块导入导出
-require('./esm');
-// javascript proxy 代理
+// javascript proxy 代理陷阱
 require('./proxy');
+// javascript esm 模块化导入导出
+require('./esm');

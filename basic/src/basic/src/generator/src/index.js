@@ -1,90 +1,42 @@
-// generator 生成器
+// javascript generator 生成器
 // 基本用法
-// function* generator_fn() {
+// function* black_myth_wtw_generator() {
 //     yield 'black_myth_wtw';
-//     yield 28 + 4;
+//     yield 30;
 //     yield true;
 //     yield '1993-06-30';
-//     yield {sports: ['Black Myth WuKong', 'Elden Ring']};
+//     yield {sports: ['basketball', 'computer games']};
 // }
-// const task = generator_fn();
-// console.log(task.next());
-// console.log(task.next());
-// console.log(task.next());
-// console.log(task.next());
-// console.log(task.next());
-// console.log(task.next());
+// const iterator = black_myth_wtw_generator();
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
 // 生成器的函数表达式
-// const arr = ['black_myth_wtw', 28, true, '1993-06-30', {sports: ['Black Myth WuKong', 'Elden Ring']}];
-// const generator_fn = function* (arr) {
-//     for (const value of arr) {
+// const arr = ['black$myth$wtw', 23, true, '1994-03-10', {sports: ['Black Myth WuKong', 'Elden Ring']}];
+// const black_myth_wtw_generator = function* (arr) {
+//     if (!Array.isArray(arr)) throw new TypeError(`The params arr:${arr} must be an array~~~~~~`);
+//     for (const value of arr.values()) {
 //         yield value;
 //     }
 // };
-// const task = generator_fn(arr);
-// console.log(task.next());
-// console.log(task.next());
-// console.log(task.next());
-// console.log(task.next());
-// console.log(task.next());
-// console.log(task.next());
+// const iterator = black_myth_wtw_generator(arr);
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
 // 生成器的对象方法
 // const black_myth_wtw = {
-//     name: 'black@myth@wtw',
-//     age: 32,
-//     gender: true,
-//     birthday: '1993-04-27',
-//     introduce(name, age, gender) {
-//         return `Hi,My name is ${name},${age} year's old,I'm a ${gender ? 'boy' : 'girl'}~~~~~~`;
-//     },
-//     hobby: {
-//         sports: ['Black Myth WuKong', 'Elden Ring']
-//     },
-//     [Symbol.iterator]() {
-//         let count = 0,
-//             done = false,
-//             values = Object.values(this),
-//             {length: values_length} = values;
-//         return {
-//             next() {
-//                 done = count >= values_length;
-//                 return {
-//                     done,
-//                     value: !done ? values[count++] : undefined,
-//                 };
-//             }
-//         }
-//     }
-// };
-// for (const value of black_myth_wtw) {
-//     console.log(value);
-// }
-// const black_myth_wtw = {
-//     name: 'black@myth@wtw',
-//     age: 32,
-//     gender: true,
-//     birthday: '1993-04-27',
-//     introduce(name, age, gender) {
-//         return `Hi,My name is ${name},${age} year's old,I'm a ${gender ? 'boy' : 'girl'}~~~~~~`;
-//     },
-//     hobby: {
-//         sports: ['Black Myth WuKong', 'Elden Ring']
-//     },
-//     * [Symbol.iterator]() {
-//         yield* Object.values(this);
-//     }
-// };
-// for (const value of black_myth_wtw) {
-//     console.log(value);
-// }
-// const black_myth_wtw = {
-//     name: 'black@myth@wtw',
-//     age: 32,
-//     gender: true,
-//     birthday: '1993-04-27',
-//     introduce(name, age, gender) {
-//         return `Hi,My name is ${name},${age} year's old,I'm a ${gender ? 'boy' : 'girl'}~~~~~~`;
-//     },
+//     name: 'black$myth$wtw',
+//     age: 23,
+//     gender: false,
+//     birthday: '1994-03-10',
 //     hobby: {
 //         sports: ['Black Myth WuKong', 'Elden Ring']
 //     },
@@ -94,108 +46,114 @@
 //         }
 //     }
 // };
+// const iterator = black_myth_wtw[Symbol.iterator]();
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
 // for (const value of black_myth_wtw) {
-//     console.log(value);
+//     console.log(`object:values-value:${value}`);
 // }
-// 向迭代器传递参数
-// function* generator_fn() {
-//     const first = yield 4 + 5;
-//     console.log('first:', first);
-//     const second = yield first + 7;
-//     console.log('second:', second);
+// 向迭代器内传递数据/参数
+// function* generator() {
+//     const first_value = yield 5 + 6;
+//     console.log(first_value);
+//     const second_value = yield first_value + 16;
+//     console.log(second_value);
 // }
-// const task = generator_fn();
-// const {value} = task.next();
-// const {value: value_ano} = task.next(value);
-// task.next(value_ano);
+// // const iterator = generator();
+// // let result = iterator.next();
+// // console.log(result);
+// // result = iterator.next(20);
+// // console.log(result);
+// // result = iterator.next(66);
+// // console.log(result);
+// const iterator = generator();
+// let result= {};
+// while (result && !result.done) {
+//     result = iterator.next(result.value);
+//     console.log(result);
+// }
 // 在生成器中抛出错误,注意抛出错误后,在没有 try-catch 的情况下,会立即停止运行,不再继续迭代
-// function* generator_fn() {
-//     const first = yield 4 + 5;
-//     console.log('first:', first);
-//     const second = yield first + 7;
-//     console.log('second:', second);
+// function* generator() {
+//     const first_value = yield 5 + 6;
+//     console.log(first_value);
+//     const second_value = yield first_value + 16;
+//     console.log(second_value);
 // }
-// const task = generator_fn();
-// const {value} = task.next();
-// const {value: value_ano} = task.next(value);
-// task.throw(new Error('failed'));
-// task.next(value_ano);
-// function* generator_fn() {
-//     const first = yield 4 + 5;
-//     console.log('first:', first);
-//     let second;
+// const iterator = generator();
+// let result = iterator.next();
+// console.log(result);
+// result = iterator.next(20);
+// console.log(result);
+// iterator.throw(new TypeError('generator iterator throw type error~~~~~~'));
+// result = iterator.next(66);
+// console.log(result);
+// function* generator() {
+//     const first_value = yield 5 + 6;
+//     console.log(first_value);
+//     let second_value;
 //     try {
-//         second = yield first + 7;
+//         second_value = yield first_value + 16;
 //     } catch (error) {
-//         second = 18;
+//         second_value = 88;
 //     }
-//     console.log('second:', second);
-//     const third = yield second + 6;
-//     console.log('third:', third);
+//     console.log(second_value);
+//     const third_value = yield second_value + 20;
+//     console.log(third_value);
 // }
-// const task = generator_fn();
-// const {value} = task.next();
-// console.log(task.next(value));
-// console.log(task.throw(new Error('failed')));
-// console.log(task.next(36));
-// 在生成器中的返回语句
-// function *information() {
-//     yield 'black@myth@wtw';
-//     yield 28 + 4;
-//     yield true;
-//     yield '1993-06-30';
-//     return {sports: ['Black Myth WuKong', 'Elden Ring']}
+// const iterator = generator();
+// let result = iterator.next();
+// console.log(result);
+// result = iterator.next(20);
+// console.log(result);
+// result = iterator.throw(new TypeError('generator iterator throw type error~~~~~~'));
+// console.log(result);
+// result = iterator.next(66);
+// console.log(result);
+// 生成器内的返回语句
+// function* generator() {
+//     const first_value = yield 5 + 6;
+//     console.log(first_value);
+//     const second_value = yield first_value + 16;
+//     console.log(second_value);
+//     return second_value;
 // }
-// const iterator = information();
-// console.log(iterator.next());
-// console.log(iterator.next());
-// console.log(iterator.next());
-// console.log(iterator.next());
-// console.log(iterator.next());
-// console.log(iterator.next());
-// function* generator_fn() {
-//     const first = yield 4 + 5;
-//     console.log('first:', first);
-//     const second = yield first + 7;
-//     console.log('second:', second);
-//     return second;
+// const iterator = generator();
+// let result = {};
+// while (result && !result.done) {
+//     result = iterator.next(result.value);
+//     console.log(result);
 // }
-// const task = generator_fn();
-// const yield_first = task.next();
-// console.log(yield_first);
-// const yield_second = task.next(yield_first.value);
-// console.log(yield_second);
-// const yield_third = task.next(yield_second.value);
-// console.log(yield_third);
-// 委托生成器,注意对于数组、函数的委托生成,会对其中的每一个可迭代元素实行分别迭代
-// function* information() {
-//     yield 'black@myth@wtw';
-//     yield 28 + 4;
-//     yield true;
-//     yield '1993-06-30';
-//     return {sports: ['Black Myth WuKong', 'Elden Ring']}
-// }
-// function* person() {
+// function* black_myth_wtw() {
 //     const hobby = yield* information();
 //     console.log(hobby);
-//     // yield hobby;
-//     return hobby;
+//     yield hobby;
 // }
-// const iterator = person();
+// function* information() {
+//     yield 'black_myth_wtw';
+//     yield 24;
+//     yield true;
+//     yield '1994-03-10';
+//     return {sports: ['basketball', 'computer games']}
+// }
+// const iterator = black_myth_wtw();
 // console.log(iterator.next());
 // console.log(iterator.next());
 // console.log(iterator.next());
 // console.log(iterator.next());
 // console.log(iterator.next());
 // console.log(iterator.next());
+// console.log(iterator.next());
+// 委托生成器,注意对于数组和函数的委托生成,会对其中的每一个可迭代元素实行分别迭代
 // const black_myth_wtw = {
-//     name: 'black@myth@wtw',
-//     age: 32,
-//     gender: true,
-//     birthday: '1993-04-27',
-//     introduce(name, age, gender) {
-//         return `Hi,My name is ${name},${age} year's old,I'm a ${gender ? 'boy' : 'girl'}~~~~~~`;
-//     },
+//     name: 'black$myth$wtw',
+//     age: 23,
+//     gender: false,
+//     birthday: '1994-03-10',
 //     hobby: {
 //         sports: ['Black Myth WuKong', 'Elden Ring']
 //     },
@@ -203,14 +161,22 @@
 //         yield* Object.values(this);
 //     }
 // };
+// // const iterator = black_myth_wtw[Symbol.iterator]();
+// // console.log(iterator.next());
+// // console.log(iterator.next());
+// // console.log(iterator.next());
+// // console.log(iterator.next());
+// // console.log(iterator.next());
+// // console.log(iterator.next());
+// // console.log(iterator.next());
 // for (const value of black_myth_wtw) {
-//     console.log(value);
+//     console.log(`object:values-value:${value}`);
 // }
-// 异步任务回调函数生成器,注意异步执行时的事件循环执行机制
+// 异步任务生成器,注意异步执行时的事件循环执行机制
+// 异步任务回调函数生成器
 // const fs = require('fs');
 // const path = require('path');
-// const question_start = path.resolve(__dirname, './questions/1.txt'),
-//     question_end = path.resolve(__dirname, './questions/2.txt');
+// const read_file = (...args) => callback => fs.readFile(...args, callback);
 // function run(generator, callback) {
 //     const task = generator();
 //     let result = task.next();
@@ -219,7 +185,8 @@
 //         if (!done) {
 //             if (typeof value === 'function') {
 //                 value(function (error, data) {
-//                     result = error ? task.throw(error instanceof Error ? error : new Error(error)) : task.next(data);
+//                     if (error) return task.throw(error instanceof Error ? error : new Error(error));
+//                     result = task.next(data);
 //                     step();
 //                 });
 //             } else {
@@ -227,69 +194,51 @@
 //                 step();
 //             }
 //         } else {
-//             if (typeof value !== 'undefined') callback(null, value);
+//             callback(null, value);
 //         }
 //     })();
 // }
-// function readFile(...args) {
-//     return function (callback) {
-//         fs.readFile(...args, callback);
-//     }
-// }
 // run(function* () {
-//     const start_file = yield readFile(question_start, 'utf-8');
-//     console.log('start_file:', start_file);
-//     const start_end = yield readFile(question_end, 'utf-8');
-//     console.log('end file:', start_end);
-//     return start_end;
+//     const first_value = yield read_file(path.resolve(__dirname, './questions/1.txt'), 'utf-8');
+//     console.log('first_value:', first_value);
+//     const second_value = yield read_file(path.resolve(__dirname, './questions/2.txt'), 'utf-8');
+//     console.log('second_value:', second_value);
+//     return second_value;
 // }, function (error, result) {
-//     if (error) return console.error(error.message);
-//     console.log('result:', result);
+//     if (error) return console.error(error);
+//     console.log('result_value:', result);
 // });
-// 异步任务状态机生成器,注意异步执行时的事件循环执行机制
+// 异步任务状态机生成器
 // const fs = require('fs');
 // const path = require('path');
-// const question_start = path.resolve(__dirname, './questions/1.txt'),
-//     question_end = path.resolve(__dirname, './questions/2.txt');
-// function run(generator, callback) {
+// const read_file = (...args) => {
+//     return new Promise((resolve, reject) => {
+//         fs.readFile(...args, function (error, data) {
+//             error ? reject(error) : resolve(data);
+//         });
+//     });
+// };
+// function run(generator) {
 //     return new Promise((resolve, reject) => {
 //         const task = generator();
 //         let result = task.next();
 //         (function step() {
 //             const {value, done} = result;
-//             if (!done) {
-//                 if (typeof value === 'function') {
-//                     value(function (error, data) {
-//                         result = error ? reject(task.throw(error instanceof Error ? error : new Error(error))) : task.next(data);
-//                         step();
-//                     });
-//                 } else {
-//                     Promise.resolve(value).then(val => {
-//                         result = task.next(val);
-//                         step();
-//                     }, reason => {
-//                         reject(reason instanceof Error ? reason : new Error(reason));
-//                     });
-//                 }
-//             } else {
-//                 if (typeof value !== 'undefined') resolve(value);
-//             }
+//             if (done) return resolve(value);
+//             const promise = Promise.resolve(value);
+//             promise.then(data => {
+//                 result = task.next(data);
+//                 step();
+//             }, error => {
+//                 reject(task.throw(error instanceof Error ? error : new Error(error)));
+//             });
 //         })();
 //     });
 // }
-// function readFile(...args) {
-//     return function (callback) {
-//         fs.readFile(...args, callback);
-//     }
-// }
 // run(function* () {
-//     const start_file = yield readFile(question_start, 'utf-8');
-//     console.log('start_file:', start_file);
-//     const start_end = yield readFile(question_end, 'utf-8');
-//     console.log('end file:', start_end);
-//     return start_end;
-// }).then(result => {
-//     console.log('promise result:', result);
-// }).catch(error => {
-//     console.error('promise error:', error.message);
-// });
+//     const first_value = yield read_file(path.resolve(__dirname, './questions/1.txt'), 'utf-8');
+//     console.log('first_value:', first_value);
+//     const second_value = yield read_file(path.resolve(__dirname, './questions/2.txt'), 'utf-8');
+//     console.log('second_value:', second_value);
+//     return second_value;
+// }).then(val => console.log('result_value:', val)).catch(error => console.error(error));

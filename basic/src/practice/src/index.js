@@ -8,29 +8,29 @@ require('./flat');
 require('./layer-flat');
 // javascript fibonacci 斐波那契数列
 require('./fibonacci');
-// javascript tail-call fibonacci 尾调用优化斐波那契数列
+// javascript tail call fibonacci 尾调用优化斐波那契数列
 require('./tail-call-fibonacci');
 // javascript cache fibonacci 缓存斐波那契数列
 require('./cache-fibonacci');
-// javascript curry 参数柯里化
+// javascript curry 函数参数柯里化
 require('./curry');
 // javascript debounce 函数防抖
 require('./debounce');
 // javascript throttle 函数节流
 require('./throttle');
-// javascript factorial 阶乘
+// javascript factorial 算法阶乘
 require('./factorial');
-// javascript tail-call factorial 尾调用优化阶乘
+// javascript tail call factorial 尾调用优化算法阶乘
 require('./tail-call-factorial');
-// javascript shallow copy 对象浅拷贝
+// javascript shallow copy 对象浅复制/对象浅拷贝
 require('./shallow-copy');
-// javascript deep clone 对象深拷贝
+// javascript deep clone 对象深复制/对象深拷贝
 require('./deep-clone');
-// javascript deep clone loop 对象循环深拷贝
+// javascript deep clone loop 对象循环深复制/对象循环深拷贝
 require('./deep-clone-loop');
 // javascript pick 对象属性筛选
 require('./pick');
-// javascript new 构造调用
+// javascript new 类构造调用
 require('./new');
 // javascript instanceof 判断对象原型链
 require('./instanceof');
@@ -42,7 +42,7 @@ require('./call');
 require('./apply');
 // javascript bind 函数硬绑定
 require('./bind');
-// javascript soft-bind 函数软绑定
+// javascript soft bind 函数软绑定
 require('./soft-bind');
 // javascript promise A+ 模拟
 require('./promise');
@@ -56,13 +56,3 @@ require('./generator-thunk');
 require('./promise-generator-thunk');
 // javascript promise timeout 异步状态机请求超时中间件
 require('./promise-timeout');
-// javascript utf-16 判断是否为 UTF-16 字符
-require('./is-utf-16');
-// javascript get string length 获取 utf-16 字符串长度
-require('./get-string-length');
-// javascript get string character arr 获取 utf-16 字符串字符数组
-require('./get-string-character-arr');
-// javascript get string character arr func 获取 utf-16 字符串字符数组并获取字符位、字符编码以及编码转换
-require('./get-string-character-arr-func');
-// javascript get reg exp flags 模拟获取正则表达式描述符内容
-require('./get-reg-exp-flags');

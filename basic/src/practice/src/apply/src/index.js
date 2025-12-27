@@ -1,58 +1,67 @@
-// ES5 apply 函数显式绑定
-// Function.prototype.my_apply = function (o) {
-//     if (typeof this !== 'function') {
-//         throw new TypeError('调用当前此 my_apply 方法的对象必须为一个函数!');
-//     }
-//     var symbol = Symbol('my_apply'),
+// javascript apply 函数显式绑定
+// ES5
+// Function.prototype.apply_mine = function (context) {
+//     if (typeof this !== 'function') throw new TypeError(`当前方法必须被函数调用~~~~~~`);
+//     var symbol = Symbol.for('apply-mine'),
 //         args = Array.prototype.slice.call(arguments, 1);
-//     o[symbol] = this;
-//     var result = o[symbol](...args);
-//     delete o[symbol];
+//     context[symbol] = this;
+//     var result = context[symbol](...args[0]);
+//     delete context[symbol];
 //     return result;
 // };
-//
-// var wtw = {
-//     name: 'wtw',
-//     age: 26,
-// };
-//
-// function Person(name, age) {
+// function Person(name, age, gender, birthday, hobby) {
 //     this.name = name;
 //     this.age = age;
+//     this.gender = gender;
+//     this.birthday = birthday;
+//     this.hobby = hobby;
 // }
-//
 // Person.prototype.introduce = function () {
-//     return `Hi,My name is ${this.name}, ${this.age} year's old~~~~~~`;
+//     return `Hi,My name is ${this.name}, ${this.age} year's old, I'm a ${this.gender ? 'boy' : 'girl'}, My birthday is ${this.birthday}, I love ${this.hobby.sports.join(',')}~~~~~~`;
 // };
-//
-// Person.my_apply(wtw, 'black@myth@wtw', 32);
-// console.log(wtw);
-
-// ES6
-// Function.prototype.my_apply = function (o, args) {
-//     if (typeof this !== 'function') {
-//         throw new TypeError('调用当前此 my_apply 方法的对象必须为一个函数!');
+// var black_myth_wtw = {
+//     name: 'black_myth_wtw',
+//     age: 32,
+//     gender: true,
+//     birthday: '1993-06-30',
+//     hobby: {
+//         sports: ['Black Myth WuKong', 'Elden Ring']
 //     }
-//     const symbol = Symbol('my_apply');
-//     o[symbol] = this;
-//     const result = o[symbol](...args);
-//     delete o[symbol];
+// };
+// Person.apply_mine(black_myth_wtw, ['black@myth@wtw', 28, false, '1968-01-28', {sports: ['basketball', 'computer games']}]);
+// console.log(black_myth_wtw);
+// Person.apply_mine(this, ['black#myth#wtw', 24, true, '1994-03-10', {sports: ['tennis', 'table tennis']}]);
+// console.log(name, age, gender, birthday, hobby);
+//
+// ES6
+// Function.prototype.apply_mine = function (context, ...args) {
+//     if (typeof this !== 'function') throw new TypeError(`当前方法必须被函数调用~~~~~~`);
+//     const symbol = Symbol.for('apply-mine');
+//     context[symbol] = this;
+//     const result = context[symbol](...args[0]);
+//     delete context[symbol];
 //     return result;
 // };
-//
-// const wtw = {
-//     name: 'wtw',
-//     age: 26,
-// };
-//
-// function Person(name, age) {
+// function Person(name, age, gender, birthday, hobby) {
 //     this.name = name;
 //     this.age = age;
+//     this.gender = gender;
+//     this.birthday = birthday;
+//     this.hobby = hobby;
 // }
-//
 // Person.prototype.introduce = function () {
-//     return `Hi,My name is ${this.name}, ${this.age} year's old~~~~~~`;
+//     return `Hi,My name is ${this.name}, ${this.age} year's old, I'm a ${this.gender ? 'boy' : 'girl'}, My birthday is ${this.birthday}, I love ${this.hobby.sports.join(',')}~~~~~~`;
 // };
-//
-// Person.my_apply(wtw, ['black@myth@wtw', 32]);
-// console.log(wtw);
+// const black_myth_wtw = {
+//     name: 'black_myth_wtw',
+//     age: 32,
+//     gender: true,
+//     birthday: '1993-06-30',
+//     hobby: {
+//         sports: ['Black Myth WuKong', 'Elden Ring']
+//     }
+// };
+// Person.apply_mine(black_myth_wtw, ['black@myth@wtw', 28, false, '1968-01-28', {sports: ['basketball', 'computer games']}]);
+// console.log(black_myth_wtw);
+// Person.apply_mine(this, ['black#myth#wtw', 24, true, '1994-03-10', {sports: ['tennis', 'table tennis']}]);
+// console.log(name, age, gender, birthday, hobby);
