@@ -380,7 +380,50 @@
 // Array_Mine.u_int_32_numeric = function (numeric_index) {
 //     return Math.floor(Math.abs(Number(numeric_index))) % Math.pow(2, 32);
 // };
-// const proxy_arr_mine = new Array_Mine(5);
+// const proxy_arr_mine = new Array_Mine(6);
+// proxy_arr_mine[0] = 'red';
+// proxy_arr_mine[1] = 'green';
+// proxy_arr_mine[2] = 'blue';
+// proxy_arr_mine[3] = 'yellow';
+// proxy_arr_mine[4] = 'purple';
+// proxy_arr_mine[5] = 'pink';
+// console.log(proxy_arr_mine, proxy_arr_mine.length);
+// proxy_arr_mine[10] = 'brown';
+// console.log(proxy_arr_mine, proxy_arr_mine.length);
+// proxy_arr_mine.length = 5;
+// console.log(proxy_arr_mine, proxy_arr_mine.length);
+// console.log(proxy_arr_mine[0], proxy_arr_mine[1], proxy_arr_mine[2], proxy_arr_mine[3], proxy_arr_mine[4], proxy_arr_mine[5], proxy_arr_mine[10]);
+// class Array_Mine {
+//     constructor(length) {
+//         this.length = length;
+//         return new Proxy(this, {
+//             set(target, key, value, receiver) {
+//                 const current_length = Reflect.get(target, 'length');
+//                 if (target.is_numeric_index(key)) {
+//                     if (key >= current_length) {
+//                         Reflect.set(target, 'length', Number(key) + 1, receiver);
+//                     }
+//                 } else {
+//                     for (let i = current_length - 1; i >= value; i--) {
+//                         Reflect.deleteProperty(target, i);
+//                     }
+//                 }
+//                 return Reflect.set(target, key, value, receiver);
+//             }
+//         });
+//     }
+//
+//     is_numeric_index(numeric_index) {
+//         const u_int_32_numeric_index = Array_Mine.u_int_32_numeric(numeric_index);
+//         return String(u_int_32_numeric_index) === numeric_index && u_int_32_numeric_index < Math.pow(2, 32) - 1;
+//     }
+//
+//     static u_int_32_numeric(numeric_index) {
+//         return Math.floor(Math.abs(Number(numeric_index))) % Math.pow(2, 32);
+//     }
+// }
+//
+// const proxy_arr_mine = new Array_Mine(7);
 // proxy_arr_mine[0] = 'red';
 // proxy_arr_mine[1] = 'green';
 // proxy_arr_mine[2] = 'blue';

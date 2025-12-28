@@ -1667,3 +1667,131 @@
 // const reg_exp = new RegExp(/\u{20bb7}{2}.{2}/uig, 'uigy');
 // const reg_exp_flags = get_reg_exp_flags(reg_exp);
 // console.log('reg_exp_flags:', reg_exp_flags);
+// class 完整模拟✅
+// 存在 TDZ 临时死区
+// 类赋值在类内部不可实行修改
+// 只可使用 new 构造调用
+// 类原型链上的方法不可枚举且不可使用 new 构造调用
+// 类原型链上的访问器属性不可枚举
+// 相对于 ES5 继承时,继承是基于派生类的 this,父类只是在此基础上实行修饰,而对于 ES6 的继承时,继承是基于父类的 this,派生类只是在此基础上实行修改,两套继承模式完全相反
+// class Person {
+//     constructor(name, age, gender, birthday, hobby) {
+//         this.name = name;
+//         this.age = age;
+//         this.gender = gender;
+//         this.birthday = birthday;
+//         this.hobby = hobby;
+//         // TypeError
+//         // 类赋值在类内部不可实行修改
+//         // Person = null;
+//     }
+//     introduce() {
+//         return `Hi,My name is ${this.name},${this.age} year's old,I'm a ${this.gender ? 'boy' : 'girl'},My birthday is ${this.birthday},I love ${this.hobby.sports.join(',')}~~~~~~`;
+//     }
+//     get get_birthday() {
+//         return this.birthday;
+//     }
+// }
+// const black_myth_wtw = new Person('black_myth_wtw', 32, true, '1993-06-30', {sports: ['basketball', 'computer games']});
+// console.log(black_myth_wtw.introduce());
+// console.log(black_myth_wtw.get_birthday);
+// for (const key in black_myth_wtw) {
+//     console.log(`class:for...in-key:${key}`);
+// }
+// TypeError
+// 类原型链上的方法不可枚举且不可使用 new 构造调用
+// const black_myth_wtw_introduce = new black_myth_wtw.introduce();
+// console.log(black_myth_wtw_introduce);
+// TypeError
+// 只可使用 new 构造调用
+// Person.call(this, 'black@myth@wtw', 30, false, '1994-03-10', {sports: ['Black Myth WuKong', 'Elden Ring']});
+// const Person = (function () {
+//     const Person = function (name, age, gender, birthday, hobby) {
+//         if (new.target === undefined) {
+//             throw new TypeError(`Class constructor ${Person.name} cannot be invoked without 'new'`);
+//         }
+//         this.name = name;
+//         this.age = age;
+//         this.gender = gender;
+//         this.birthday = birthday;
+//         this.hobby = hobby;
+//         // TypeError
+//         // 类赋值在类内部不可实行修改
+//         // Person = null;
+//     }
+//     Object.defineProperty(Person.prototype, 'introduce', {
+//         value() {
+//             if (new.target !== undefined) {
+//                 throw new TypeError(`${this.name} is not a constructor`);
+//             }
+//             return `Hi,My name is ${this.name},${this.age} year's old,I'm a ${this.gender ? 'boy' : 'girl'},My birthday is ${this.birthday},I love ${this.hobby.sports.join(',')}~~~~~~`;
+//         },
+//         enumerable: false,
+//         configurable: true,
+//         writable: false,
+//     });
+//     Object.defineProperty(Person.prototype, 'get_birthday', {
+//         get() {
+//             return this.birthday;
+//         },
+//         enumerable: false,
+//         configurable: true,
+//     });
+//     return Person;
+// })();
+// const black_myth_wtw = new Person('black_myth_wtw', 32, true, '1993-06-30', {sports: ['basketball', 'computer games']});
+// console.log(black_myth_wtw.introduce());
+// console.log(black_myth_wtw.get_birthday);
+// for (const key in black_myth_wtw) {
+//     console.log(`class:for...in-key:${key}`);
+// }
+// TypeError
+// 类原型链上的方法不可枚举且不可使用 new 构造调用
+// const black_myth_wtw_introduce = new black_myth_wtw.introduce();
+// console.log(black_myth_wtw_introduce);
+// TypeError
+// 只可使用 new 构造调用
+// Person.call(this, 'black@myth@wtw', 30, false, '1994-03-10', {sports: ['Black Myth WuKong', 'Elden Ring']});
+// 拥有数组特性的类✅
+// class Array_Mine {
+//     constructor(length = 0) {
+//         this.length = length;
+//         return new Proxy(this, {
+//             set(target, key, value, receiver) {
+//                 const current_length = Reflect.get(target, 'length');
+//                 if (target.is_numeric_index(key)) {
+//                     if (key >= current_length) {
+//                         Reflect.set(target, 'length', Number(key) + 1, receiver);
+//                     }
+//                 } else {
+//                     for (let i = current_length - 1; i >= value; i--) {
+//                         Reflect.deleteProperty(target, i);
+//                     }
+//                 }
+//                 return Reflect.set(target, key, value, receiver);
+//             }
+//         });
+//     }
+//
+//     is_numeric_index(numeric_index) {
+//         const u_int_32_numeric_index = Array_Mine.u_int_32_numeric(numeric_index);
+//         return String(u_int_32_numeric_index) === numeric_index && u_int_32_numeric_index < Math.pow(2, 32) - 1;
+//     }
+//
+//     static u_int_32_numeric(numeric_index) {
+//         return Math.floor(Math.abs(Number(numeric_index))) % Math.pow(2, 32);
+//     }
+// }
+// const proxy_arr_mine = new Array_Mine(7);
+// proxy_arr_mine[0] = 'red';
+// proxy_arr_mine[1] = 'green';
+// proxy_arr_mine[2] = 'blue';
+// proxy_arr_mine[3] = 'yellow';
+// proxy_arr_mine[4] = 'purple';
+// proxy_arr_mine[5] = 'pink';
+// console.log(proxy_arr_mine, proxy_arr_mine.length);
+// proxy_arr_mine[10] = 'brown';
+// console.log(proxy_arr_mine, proxy_arr_mine.length);
+// proxy_arr_mine.length = 5;
+// console.log(proxy_arr_mine, proxy_arr_mine.length);
+// console.log(proxy_arr_mine[0], proxy_arr_mine[1], proxy_arr_mine[2], proxy_arr_mine[3], proxy_arr_mine[4], proxy_arr_mine[5], proxy_arr_mine[10]);
