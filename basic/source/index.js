@@ -2,3 +2,5 @@
 require('./basic');
 // javascript es6 模拟各方法与中间件
 require('./practice');
+// javascript algorithm 算法
+require('./algorithm');

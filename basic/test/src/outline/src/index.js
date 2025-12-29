@@ -588,3 +588,8 @@
 // console.log(square);
 // console.log(Math.PI * square.width * square.height);
 // 15. esm 导入导出模块✅
+// 16. 数字✅
+// 17. async/await✅
+// 18. Environment Record✅
+// 19. Environment Record this 绑定✅
+// 20. 类型判断✅

@@ -10,3 +10,5 @@ require('./browser');
 require('./javascript');
 // think of outline
 require('./outline');
+// think of algorithm
+require('./algorithm');
