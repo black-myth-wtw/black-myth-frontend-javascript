@@ -751,7 +751,7 @@
 //     console.log('I love ZhengShuAng~~~~~~');
 // }, 0);
 // console.log('I love ZhaoYue~~~~~~');
-// promise A+ 完整模拟✅
+// complete promise A+ 完整模拟✅
 // const Promise_Mine = (() => {
 //     const PENDING = 'PENDING',
 //         FULFILLED = 'FULFILLED',
@@ -1136,7 +1136,7 @@
 // }).catch(reason => {
 //     console.error('error:', reason);
 // });
-// promise A+ 完整模拟并规范测试✅
+// complete promise test A+ 完整模拟并规范测试✅
 // const Promise_Mine = (() => {
 //     const PENDING = 'PENDING',
 //         FULFILLED = 'FULFILLED',
@@ -1795,3 +1795,21 @@
 // proxy_arr_mine.length = 5;
 // console.log(proxy_arr_mine, proxy_arr_mine.length);
 // console.log(proxy_arr_mine[0], proxy_arr_mine[1], proxy_arr_mine[2], proxy_arr_mine[3], proxy_arr_mine[4], proxy_arr_mine[5], proxy_arr_mine[10]);
+// 扁平化树形转嵌套树形
+// const list = [
+//     {id: 0, val: 0, parentId: 'root'},
+//     {id: 1, val: 1, parentId: 0},
+//     {id: 2, val: 2, parentId: 0},
+//     {id: 3, val: 3, parentId: 1},
+//     {id: 4, val: 4, parentId: 2}
+// ];
+// function build_tree_list(list = [], parent_id = 'root') {
+//     return list.filter(list_item => list_item.parentId === parent_id).map(filter_item => {
+//         return {
+//             ...filter_item,
+//             children: build_tree_list(list, filter_item.id)
+//         };
+//     });
+// }
+// const build_tree_list_result = build_tree_list(list);
+// console.log('build_tree_list_result:', build_tree_list_result);

@@ -4,3 +4,5 @@ require('./source');
 require('./src');
 // 最终测试
 require('./test');
+// 执行之后
+require('./final');
