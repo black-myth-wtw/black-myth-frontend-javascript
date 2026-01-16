@@ -4,3 +4,5 @@ require('./javascript');
 require('./nodejs');
 // javascript think of daily-problems 每日问题小贴士
 require('./daily-problems');
+// javascript think of react React 基础
+require('./react');
