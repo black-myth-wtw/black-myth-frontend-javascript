@@ -6,3 +6,5 @@ require('./nodejs');
 require('./daily-problems');
 // javascript think of react React 基础
 require('./react');
+// javascript think of browser 网络
+require('./browser');
