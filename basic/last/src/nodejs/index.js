@@ -1,2 +1,2 @@
 // javascript think of daily-problems✅
-require('./src');
+require("./src");

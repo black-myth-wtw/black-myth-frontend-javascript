@@ -1,2 +1,2 @@
 // javascript think of nodejs✅
-require('./src');
+require("./src");

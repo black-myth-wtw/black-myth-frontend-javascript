@@ -28,12 +28,15 @@
 // };
 export let number = 168;
 export default function sum() {
-    return (number = number + 100);
+  return (number = number + 100);
 }
-const timer = setTimeout(() => {
-    console.log('new number:', number);
+const timer = setTimeout(
+  () => {
+    console.log("new number:", number);
     clearTimeout(timer);
-}, 2 * 60 * 1000);
+  },
+  2 * 60 * 1000,
+);
 // export let hobby = {
 //   sports: [
 //     "Black Myth WuKong",
