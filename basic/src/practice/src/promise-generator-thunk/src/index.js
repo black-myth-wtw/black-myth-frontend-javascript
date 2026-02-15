@@ -44,41 +44,58 @@
 //     console.error('error:', error);
 // });
 
-// ES6
+// ES6;
 // const fs = require('fs');
 // const path = require('path');
-// const thunk = fn => {
-//     if (typeof fn !== 'function') throw new TypeError(`The params fn:${fn} must be a function~~~~~~`);
-//     return (...args) => callback => fn(...args, callback);
-// }
+// const thunk = (fn) => {
+//   if (typeof fn !== 'function')
+//     throw new TypeError(`The params fn:${fn} must be a function~~~~~~`);
+//   return (...args) =>
+//     (callback) =>
+//       fn(...args, callback);
+// };
 // function run(generator) {
-//     return new Promise(function (resolve, reject) {
-//         const task = generator();
-//         function next(error, data) {
-//             if (error) return reject(task.throw(error instanceof Error ? error : new Error(error)));
-//             const {value, done} = task.next(data);
-//             if (done) return resolve(value);
-//             if (typeof value === 'function') {
-//                 return value(next);
-//             }
-//             Promise.resolve(value).then(val => {
-//                 next(null, val);
-//             }, reason => {
-//                 next(reason);
-//             });
-//         }
-//         next();
-//     });
+//   return new Promise(function (resolve, reject) {
+//     const task = generator();
+//     function next(error, data) {
+//       if (error)
+//         return reject(
+//           task.throw(error instanceof Error ? error : new Error(error)),
+//         );
+//       const { value, done } = task.next(data);
+//       if (done) return resolve(value);
+//       if (typeof value === 'function') {
+//         return value(next);
+//       }
+//       Promise.resolve(value).then(
+//         (val) => {
+//           next(null, val);
+//         },
+//         (reason) => {
+//           next(reason);
+//         },
+//       );
+//     }
+//     next();
+//   });
 // }
 // const read_file = thunk(fs.readFile);
 // run(function* () {
-//     const first_file_question = yield read_file(path.resolve(__dirname, './questions/1.txt'), 'utf-8');
-//     console.log('first_file_question:', first_file_question);
-//     const second_file_question = yield read_file(path.resolve(__dirname, './questions/2.txt'), 'utf-8');
-//     console.log('second_file_question:', second_file_question);
-//     return second_file_question;
-// }).then(result => {
+//   const first_file_question = yield read_file(
+//     path.resolve(__dirname, './questions/1.txt'),
+//     'utf-8',
+//   );
+//   console.log('first_file_question:', first_file_question);
+//   const second_file_question = yield read_file(
+//     path.resolve(__dirname, './questions/2.txt'),
+//     'utf-8',
+//   );
+//   console.log('second_file_question:', second_file_question);
+//   return second_file_question;
+// })
+//   .then((result) => {
 //     console.log('result:', result);
-// }).catch(error => {
+//   })
+//   .catch((error) => {
 //     console.error('error:', error);
-// });
+//   });

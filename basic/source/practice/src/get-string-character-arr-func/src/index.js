@@ -25,23 +25,25 @@
 // }
 // get_string_character_arr_func(utf_16_string);
 
-// ES6
+// ES6;
 // const utf_16_string = '𠮷𠮷千兆';
-// const get_string_character_arr = string => (string.toString() || String(string)).match(/[\s\S]/ug);
-// const is_utf_16_string = string => (string.toString() || String(utf_16_string)).codePointAt(0) > 0xFFFF;
-// const get_string_character_arr_func = string => {
-//     const get_string_arr = get_string_character_arr(string);
-//     for (const value of get_string_arr) {
-//         if (is_utf_16_string(value)) {
-//             const get_code_point = value.codePointAt(0);
-//             console.log(get_code_point);
-//             console.log(String.fromCodePoint(get_code_point));
-//         } else {
-//             console.log(value.charAt(0));
-//             const get_string_char_code = value.charCodeAt(0);
-//             console.log(get_string_char_code);
-//             console.log(String.fromCharCode(get_string_char_code));
-//         }
+// const get_string_character_arr = (string) =>
+//   (string.toString() || String(string)).match(/[\s\S]/gu);
+// const is_utf_16_string = (string) =>
+//   (string.toString() || String(utf_16_string)).codePointAt(0) > 0xffff;
+// const get_string_character_arr_func = (string) => {
+//   const get_string_arr = get_string_character_arr(string);
+//   for (const value of get_string_arr) {
+//     if (is_utf_16_string(value)) {
+//       const get_code_point = value.codePointAt(0);
+//       console.log(get_code_point);
+//       console.log(String.fromCodePoint(get_code_point));
+//     } else {
+//       console.log(value.charAt(0));
+//       const get_string_char_code = value.charCodeAt(0);
+//       console.log(get_string_char_code);
+//       console.log(String.fromCharCode(get_string_char_code));
 //     }
+//   }
 // };
 // get_string_character_arr_func(utf_16_string);

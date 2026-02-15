@@ -21,9 +21,12 @@
 // console.log(compose(add, multiply)(50));
 // console.log(compose(add, multiply)(60));
 
-// ES6
-// const compose = (...fns) => x => fns.reduce((a, b) => b(a), x);
-// const add = x => x + x;
-// const multiply = x => x * x;
+// ES6;
+// const compose =
+//   (...fns) =>
+//   (x) =>
+//     fns.reduce((a, b) => b(a), x);
+// const add = (x) => x + x;
+// const multiply = (x) => x * x;
 // console.log(compose(add, multiply)(50));
 // console.log(compose(add, multiply)(60));

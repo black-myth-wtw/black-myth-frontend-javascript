@@ -1,10 +1,12 @@
 // javascript think of javascript 前端高级程序设计
-require('./javascript');
+require("./javascript");
 // javascript think of nodejs 服务端程序设计
-require('./nodejs');
+require("./nodejs");
 // javascript think of daily-problems 每日问题小贴士
-require('./daily-problems');
+require("./daily-problems");
 // javascript think of react React 基础
-require('./react');
+require("./react");
 // javascript think of browser 网络
-require('./browser');
+require("./browser");
+// javascript think of es6 ECMAScript 2015
+require("./es6");

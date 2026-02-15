@@ -15,17 +15,17 @@
 //     }
 // }
 
-// ES6
+// ES6;
 // const debounce = (fn, timeout) => {
-//     let timer = null;
-//     return function (...args) {
-//         if (timer) {
-//             clearTimeout(timer);
-//             timer = null;
-//         }
-//         let self = this;
-//         timer = setTimeout(() => {
-//             fn(...args);
-//         }, timeout);
-//     };
+//   let timer = null;
+//   return function (...args) {
+//     if (timer) {
+//       clearTimeout(timer);
+//       timer = null;
+//     }
+//     let self = this;
+//     timer = setTimeout(() => {
+//       fn(...args);
+//     }, timeout);
+//   };
 // };

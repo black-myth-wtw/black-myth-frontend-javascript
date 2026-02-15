@@ -53,35 +53,46 @@
 //     console.error('error:', error);
 // });
 
-// ES6
+// ES6;
 // const path = require('path'),
-//     fs = require('fs');
+//   fs = require('fs');
 //
 // const path_start = path.resolve(__dirname, './questions/1.txt'),
-//     path_end = path.resolve(__dirname, './questions/2.txt');
+//   path_end = path.resolve(__dirname, './questions/2.txt');
 //
-// const thunk = fn => (...args) => callback => fn(...args, callback);
+// const thunk =
+//   (fn) =>
+//   (...args) =>
+//   (callback) =>
+//     fn(...args, callback);
 //
-// const run = generator => new Promise((resolve, reject) => {
+// const run = (generator) =>
+//   new Promise((resolve, reject) => {
 //     const task = generator();
 //
 //     const next = (err, data) => {
-//         if (err) return reject(task.throw(err instanceof Error ? err : new Error(err)));
-//         const {value, done} = task.next(data);
-//         if (done) return resolve(value);
-//         if (typeof value === 'function') return value(next);
+//       if (err)
+//         return reject(task.throw(err instanceof Error ? err : new Error(err)));
+//       const { value, done } = task.next(data);
+//       if (done) return resolve(value);
+//       if (typeof value === 'function') return value(next);
 //
-//         Promise.resolve(value).then(val => next(null, val), reason => next(reason));
-//     }
+//       Promise.resolve(value).then(
+//         (val) => next(null, val),
+//         (reason) => next(reason),
+//       );
+//     };
 //
 //     next();
-// });
+//   });
 //
 // const readFile = thunk(fs.readFile);
 // run(function* () {
-//     const file_start = yield readFile(path_start, 'utf-8');
-//     console.log('file one:', file_start);
-//     const file_end = yield readFile(path_end, 'utf-8');
-//     console.log('file end:', file_end);
-//     return file_end;
-// }).then(value => console.log('file_final:', value)).catch(error => console.error('error:', error));
+//   const file_start = yield readFile(path_start, 'utf-8');
+//   console.log('file one:', file_start);
+//   const file_end = yield readFile(path_end, 'utf-8');
+//   console.log('file end:', file_end);
+//   return file_end;
+// })
+//   .then((value) => console.log('file_final:', value))
+//   .catch((error) => console.error('error:', error));

@@ -59,47 +59,49 @@
 // console.log(wtw);
 // console.log(wtw.introduce());
 
-// ES6
+// ES6;
 // Function.prototype.soft_bind = function (context, ...args) {
-//     if (typeof this !== 'function') {
-//         throw new TypeError('调用当前此 soft_bind 方法的对象必须为一个函数!');
-//     }
+//   if (typeof this !== 'function') {
+//     throw new TypeError('调用当前此 soft_bind 方法的对象必须为一个函数!');
+//   }
 //
-//     const self = this,
-//         F = function () {
-//         },
-//         fBind = function (...fBind_args) {
-//             return self.apply((this === window || this === undefined) ? context : this, [...args, ...fBind_args]);
-//         }
+//   const self = this,
+//     F = function () {},
+//     fBind = function (...fBind_args) {
+//       return self.apply(
+//         this === window || this === undefined ? context : this,
+//         [...args, ...fBind_args],
+//       );
+//     };
 //
-//     Object.setPrototypeOf(F.prototype, self.prototype);
-//     Object.setPrototypeOf(fBind.prototype, F.prototype);
-//     return fBind;
+//   Object.setPrototypeOf(F.prototype, self.prototype);
+//   Object.setPrototypeOf(fBind.prototype, F.prototype);
+//   return fBind;
 // };
 //
 // function Person(name, age) {
-//     this.name = name;
-//     this.age = age;
+//   this.name = name;
+//   this.age = age;
 // }
 //
 // Person.prototype.introduce = function () {
-//     return `Hi,My name is ${this.name},${this.age} year's old~~~~~~`;
+//   return `Hi,My name is ${this.name},${this.age} year's old~~~~~~`;
 // };
 //
 // const wtw = {
-//     name: 'wtw',
-//     age: 26,
-//     introduce: function () {
-//         return `Hi,My name is ${this.name},${this.age} year's old~~~~~~`;
-//     }
+//   name: 'wtw',
+//   age: 26,
+//   introduce: function () {
+//     return `Hi,My name is ${this.name},${this.age} year's old~~~~~~`;
+//   },
 // };
 //
 // const lily = {
-//     name: 'lily',
-//     age: 28,
-//     introduce: function () {
-//         return `Hi,My name is ${this.name},${this.age} year's old~~~~~~`;
-//     }
+//   name: 'lily',
+//   age: 28,
+//   introduce: function () {
+//     return `Hi,My name is ${this.name},${this.age} year's old~~~~~~`;
+//   },
 // };
 //
 // const black_myth_wtw = Person.soft_bind(wtw);

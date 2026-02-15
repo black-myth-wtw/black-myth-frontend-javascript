@@ -34,28 +34,38 @@
 //     console.log('second_file_question:', second_file_question);
 // });
 
-// ES6
+// ES6;
 // const fs = require('fs');
 // const path = require('path');
-// const thunk = fn => {
-//     if (typeof fn !== 'function') throw new TypeError(`The params fn:${fn} must be a function~~~~~~`);
-//     return (...args) => callback => fn(...args, callback);
-// }
-// const run = generator => {
-//     const task = generator();
-//     function next(error, data) {
-//         if (error) return task.throw(error instanceof Error ? error : new Error(error));
-//         const {value, done} = task.next(data);
-//         if (done) return true;
-//         if (typeof value === 'function') value(next);
-//         else next(null, value);
-//     }
-//     next();
-// }
+// const thunk = (fn) => {
+//   if (typeof fn !== 'function')
+//     throw new TypeError(`The params fn:${fn} must be a function~~~~~~`);
+//   return (...args) =>
+//     (callback) =>
+//       fn(...args, callback);
+// };
+// const run = (generator) => {
+//   const task = generator();
+//   function next(error, data) {
+//     if (error)
+//       return task.throw(error instanceof Error ? error : new Error(error));
+//     const { value, done } = task.next(data);
+//     if (done) return true;
+//     if (typeof value === 'function') value(next);
+//     else next(null, value);
+//   }
+//   next();
+// };
 // const read_file_thunk = thunk(fs.readFile);
 // run(function* () {
-//     const first_file_question = yield read_file_thunk(path.resolve(__dirname, './questions/1.txt'), 'utf-8');
-//     console.log('first_file_question:', first_file_question);
-//     const second_file_question = yield read_file_thunk(path.resolve(__dirname, './questions/2.txt'), 'utf-8');
-//     console.log('second_file_question:', second_file_question);
+//   const first_file_question = yield read_file_thunk(
+//     path.resolve(__dirname, './questions/1.txt'),
+//     'utf-8',
+//   );
+//   console.log('first_file_question:', first_file_question);
+//   const second_file_question = yield read_file_thunk(
+//     path.resolve(__dirname, './questions/2.txt'),
+//     'utf-8',
+//   );
+//   console.log('second_file_question:', second_file_question);
 // });

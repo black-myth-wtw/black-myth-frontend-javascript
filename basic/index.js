@@ -1,8 +1,8 @@
 // 源代码
-require('./source');
+require("./source");
 // 正式源码
-require('./src');
+require("./src");
 // 最终测试
-require('./test');
+require("./test");
 // 执行之后
-require('./final');
+require("./final");

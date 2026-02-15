@@ -19,10 +19,14 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "basic": "node ./basic/index.js",
+    "basic": "nodemon ./basic/index.js",
+    "format:basic": "prettier --write \"basic/**/*.{js,mjs,json}\"",
+    "format:basic:comments": "node scripts/format-comment-code.cjs",
+    "format:basic:all": "npm run format:basic:comments && npm run format:basic",
     "promises-aplus-tests": "promises-aplus-tests basic/src/practice/src/complete-promise-test/index.js"
   },
   "devDependencies": {
+    "prettier": "^3.8.1",
     "promises-aplus-tests": "^2.1.2"
   }
 }

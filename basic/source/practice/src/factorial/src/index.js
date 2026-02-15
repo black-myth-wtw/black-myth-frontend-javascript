@@ -15,8 +15,8 @@
 // console.log(factorial(200));
 // console.log(factorial(300));
 
-// ES6
-// const factorial = n => n === 1 ? n : n * factorial(n - 1);
+// ES6;
+// const factorial = (n) => (n === 1 ? n : n * factorial(n - 1));
 // console.log(factorial(5));
 // console.log(factorial(10));
 // console.log(factorial(20));

@@ -1,14 +1,14 @@
 // think of nodejs
-require('./nodejs');
+require("./nodejs");
 // think of daily-problems
-require('./daily-problems');
+require("./daily-problems");
 // think of react
-require('./react');
+require("./react");
 // think of browser
-require('./browser');
+require("./browser");
 // think of javascript
-require('./javascript');
+require("./javascript");
 // think of outline
-require('./outline');
+require("./outline");
 // think of algorithm
-require('./algorithm');
+require("./algorithm");

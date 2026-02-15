@@ -51,4 +51,3 @@
 // soft_bind_mine.call(black_myth_lily, 'black%myth%wtw', 26, true, '2000-10-10', {sports: ['running', 'skiing']});
 // console.log(black_myth_wtw);
 // console.log(black_myth_lily);
-

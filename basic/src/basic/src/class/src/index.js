@@ -182,7 +182,7 @@
 //     }
 // }('black_myth_wtw', 32, true, '1993-06-30', {sports: ['basketball', 'computer games']});
 // console.log(black_myth_wtw.introduce());
-// 类的访问器属性c
+// 类的访问器属性
 // class Person {
 //     constructor(name, age, gender, birthday, hobby) {
 //         this.name = name;

@@ -3,7 +3,7 @@
 // export const drink = 'water';
 //
 // export function count() {
-//     return ++number;
+//   return ++number;
 // }
 //
 // // function sum() {
@@ -13,11 +13,12 @@
 //
 // // export {number, gender, drink, default as add} from './module.mjs';
 // Array.prototype.push_all = function (args) {
-//     if (!Array.isArray(args)) throw new TypeError(`The params args:${args} must be an array~~~~~~`);
-//     return this.push(...args);
+//   if (!Array.isArray(args))
+//     throw new TypeError(`The params args:${args} must be an array~~~~~~`);
+//   return this.push(...args);
 // };
 //
 // export let number = 66;
 // export default function sum() {
-//     return (number = number + 68);
+//   return (number = number + 68);
 // }

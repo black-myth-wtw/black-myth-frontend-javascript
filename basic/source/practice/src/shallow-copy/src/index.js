@@ -32,30 +32,30 @@
 // console.log(black_myth_gary.introduce());
 // console.log(black_myth_wtw, black_myth_gary);
 
-// ES6
-// const shallow_copy = o => {
-//     const _o = Array.isArray(o) ? [] : {};
-//     for (const key in o) {
-//         if (o.hasOwnProperty(key)) {
-//             _o[key] = o[key];
-//         }
+// ES6;
+// const shallow_copy = (o) => {
+//   const _o = Array.isArray(o) ? [] : {};
+//   for (const key in o) {
+//     if (o.hasOwnProperty(key)) {
+//       _o[key] = o[key];
 //     }
-//     return _o;
-// }
+//   }
+//   return _o;
+// };
 //
 // const symbol = Symbol('shallow_copy');
 // const black_myth_wtw = {
-//     name: 'black_myth_wtw',
-//     age: 32,
-//     gender: true,
-//     hobby: {
-//         sports: ['Black Myth WuKong', 'Elden Ring']
-//     },
-//     introduce() {
-//         return `Hi,My name is ${this.name}, ${this.age} year's old,I'm a ${this.gender ? 'boy' : 'girl'},I love ${this.hobby.sports.join(',')}~~~~~~`;
-//     },
-//     another: undefined,
-//     [symbol]: 'yes'
+//   name: 'black_myth_wtw',
+//   age: 32,
+//   gender: true,
+//   hobby: {
+//     sports: ['Black Myth WuKong', 'Elden Ring'],
+//   },
+//   introduce() {
+//     return `Hi,My name is ${this.name}, ${this.age} year's old,I'm a ${this.gender ? 'boy' : 'girl'},I love ${this.hobby.sports.join(',')}~~~~~~`;
+//   },
+//   another: undefined,
+//   [symbol]: 'yes',
 // };
 // const black_myth_gary = shallow_copy(black_myth_wtw);
 // black_myth_gary.name = 'black_myth_gary';

@@ -1,6 +1,6 @@
 // javascript es6 基础语法
-require('./basic');
+require("./basic");
 // javascript es6 模拟各方法与中间件
-require('./practice');
+require("./practice");
 // javascript algorithm 算法
-require('./algorithm');
+require("./algorithm");

@@ -6,7 +6,8 @@
 // }
 // console.log(get_string_length(utf_16_string));
 
-// ES6
+// ES6;
 // const utf_16_string = '𠮷𠮷千兆';
-// const get_string_length = string => (string.toString() || String(string)).match(/[\s\S]/ug).length;
+// const get_string_length = (string) =>
+//   (string.toString() || String(string)).match(/[\s\S]/gu).length;
 // console.log(get_string_length(utf_16_string));

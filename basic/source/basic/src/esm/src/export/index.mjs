@@ -25,5 +25,5 @@
 // };
 export let number = 100;
 export default function sum() {
-    return (number = number + 100);
+  return (number = number + 100);
 }

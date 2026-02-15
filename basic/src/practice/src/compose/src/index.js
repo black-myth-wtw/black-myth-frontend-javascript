@@ -17,9 +17,12 @@
 // var compose_result = compose(add, multiply)(40);
 // console.log('compose result:', compose_result);
 
-// ES6
-// const compose = (...args) => x => args.reduce((a, b) => b(a), x);
-// const add = x => x + x;
-// const multiply = x => Math.pow(x, 2);
+// ES6;
+// const compose =
+//   (...args) =>
+//   (x) =>
+//     args.reduce((a, b) => b(a), x);
+// const add = (x) => x + x;
+// const multiply = (x) => Math.pow(x, 2);
 // const compose_result = compose(add, multiply)(60);
 // console.log('compose_result:', compose_result);

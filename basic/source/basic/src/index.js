@@ -1,30 +1,30 @@
 // javascript let const 声明常量、变量
-require('./let-const');
+require("./let-const");
 // javascript string 字符串
-require('./string');
+require("./string");
 // javascript function 函数
-require('./function');
+require("./function");
 // javascript object 对象
-require('./object');
+require("./object");
 // javascript destructure 解构赋值
-require('./destructure');
+require("./destructure");
 // javascript symbol 未命名标识位
-require('./symbol');
+require("./symbol");
 // javascript set 集合
-require('./set');
+require("./set");
 // javascript map 字典
-require('./map');
+require("./map");
 // javascript iterator 迭代器
-require('./iterator');
+require("./iterator");
 // javascript generator 生成器
-require('./generator');
+require("./generator");
 // javascript class 类
-require('./class');
+require("./class");
 // javascript array 改进数组
-require('./array');
+require("./array");
 // javascript promise 异步状态机
-require('./promise');
+require("./promise");
 // javascript esm 模块导入导出
-require('./esm');
+require("./esm");
 // javascript proxy 代理
-require('./proxy');
+require("./proxy");

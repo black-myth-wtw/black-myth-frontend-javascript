@@ -1,1 +1,1 @@
-require('./src/index.mjs');
+require("./src/index.mjs");

@@ -20,21 +20,21 @@
 //     };
 // }
 
-// ES6
+// ES6;
 // const throttle = (fn, timeout) => {
-//     let timer = null,
-//         first = true;
-//     return function (...args) {
-//         if (timer) return false;
-//         if (first) {
-//             fn(...args);
-//             first = false;
-//             return true;
-//         }
-//         timer = setTimeout(() => {
-//             fn(...args);
-//             clearTimeout(timer);
-//             timer = null;
-//         }, timeout);
+//   let timer = null,
+//     first = true;
+//   return function (...args) {
+//     if (timer) return false;
+//     if (first) {
+//       fn(...args);
+//       first = false;
+//       return true;
 //     }
-// }
+//     timer = setTimeout(() => {
+//       fn(...args);
+//       clearTimeout(timer);
+//       timer = null;
+//     }, timeout);
+//   };
+// };

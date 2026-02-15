@@ -414,6 +414,9 @@
 // for (const [key, value] of Object.entries(proxy)) {
 //     console.log(`Object.entries-key:${key},value:${value}`);
 // }
+// for (const key of Reflect.ownKeys(proxy)) {
+//     console.log(`Object.entries-key:${String(key)}`);
+// }
 // 函数或者类执行 apply 与 construct 代理陷阱
 // 验证函数参数
 // function Person(name, age, gender, birthday, hobby) {

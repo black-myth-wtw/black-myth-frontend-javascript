@@ -41,29 +41,50 @@
 //     console.error('reason:', reason);
 // });
 
-// ES6
+// ES6;
 // function promise_timeout(promises, timeout) {
-//     if (!Array.isArray(promises)) throw new TypeError(`The params promises:${promises} must be an array~~~~~~`);
-//     return Promise.race([...promises.map(promise => Promise.resolve(promise).then(value => typeof value === 'object' && value.hasOwnProperty('status') ? value : {
-//         status: 'fulfilled',
-//         value
-//     })), new Promise((resolve, reject) => setTimeout(() => {
+//   if (!Array.isArray(promises))
+//     throw new TypeError(
+//       `The params promises:${promises} must be an array~~~~~~`,
+//     );
+//   return Promise.race([
+//     ...promises.map((promise) =>
+//       Promise.resolve(promise).then((value) =>
+//         typeof value === 'object' && value.hasOwnProperty('status')
+//           ? value
+//           : {
+//               status: 'fulfilled',
+//               value,
+//             },
+//       ),
+//     ),
+//     new Promise((resolve, reject) =>
+//       setTimeout(() => {
 //         reject({
-//             status: 'rejected',
-//             reason: '请求超时~~~~~~'
+//           status: 'rejected',
+//           reason: '请求超时~~~~~~',
 //         });
-//     }, timeout))]);
+//       }, timeout),
+//     ),
+//   ]);
 // }
-// promise_timeout([new Promise(resolve => {
-//     // resolve('I love ZhengShuAng~~~~~~');
-//     // resolve({
-//     //     status: 'fulfilled',
-//     //     value: 'I love ZhaoYue~~~~~~'
-//     // });
-//     // setTimeout(() => {
-//     //     resolve('I love WangJinJin~~~~~~');
-//     // }, 3100);
-//     setTimeout(() => {
+// promise_timeout(
+//   [
+//     new Promise((resolve) => {
+//       // resolve('I love ZhengShuAng~~~~~~');
+//       // resolve({
+//       //     status: 'fulfilled',
+//       //     value: 'I love ZhaoYue~~~~~~'
+//       // });
+//       // setTimeout(() => {
+//       //     resolve('I love WangJinJin~~~~~~');
+//       // }, 3100);
+//       setTimeout(() => {
 //         resolve('I love myself~~~~~~');
-//     }, 2900);
-// })], 3000).then(value => console.log('result:', value)).catch(error => console.error(error));
+//       }, 2900);
+//     }),
+//   ],
+//   3000,
+// )
+//   .then((value) => console.log('result:', value))
+//   .catch((error) => console.error(error));
