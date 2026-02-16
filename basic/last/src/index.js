@@ -4,3 +4,5 @@ require("./nodejs");
 require("./daily-problems");
 // javascript think of react✅
 require("./react");
+// javascript think of browser✅
+require("./browser");
